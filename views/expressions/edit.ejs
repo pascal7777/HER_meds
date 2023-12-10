@@ -1,0 +1,197 @@
+<% layout('layouts/boilerplate')%>
+    
+
+
+<div class="row">
+ 
+   
+    <h1 class="text-center">Edit Expression</h1> 
+    <div class="col-6 offset-3">
+    <p>for: <%=expression.product.inn%>-<%=expression.product.formulation%> </p>
+   
+
+        <form action="/expressions/<%=expression._id%>?_method=PUT" method="POST" novalidate class = "validated-form" enctype="multipart/form-data">
+        
+        <div class="mb-3">
+            <label class="form-label" for="company">Supplier</label>
+            <input class="form-control" type="text" id="company" name="expression[company]" value="<%=expression.company%>" required>
+        </div>       
+        <div class="mb-3">
+        <label class="form-label" for="manufacturer">Manufacturer</label>
+        <input class="form-control" type="text" id="manufacturer" name="expression[manufacturer]" value="<%=expression.manufacturer%>">
+         </div>  
+       
+         <div class="mb-4">
+            <label class="form-label" for="mf_country">Country of Manufacturing</label>
+            <input class="form-control" list="country" id="mf_country" name="expression[mf_country]" value="<%=expression.mf_country%>">
+            <datalist id="country">
+                    <option value="Afghanistan">
+                    <option value="Pakistan">
+                    <option value="Turkiye">
+                    <option value="India">
+                    <option value="Bangladesh">
+                    <option value="China">
+                    <option value="Iran">
+                    <option value="EU">
+                    <option value="Other">
+            </datalist>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label" for="afda" class="form-label">AFDA (MOH) Status</label>
+            <input class="form-control" list="afdayn" id="afda" name="expression[afda]"  value="<%=expression.afda%>">
+            <datalist id="afdayn">
+                <option value="Yes">
+                <option value="No"> 
+                <option value="To be confirmed">                      
+            </datalist>
+        </div>
+
+
+       
+        <div class="mb-3">
+            <label class="form-label" for="formulation" class="form-label">Dosage form</label>
+            <input class="form-control" list="formulations" id="formulation" name="expression[formulation]" value="<%=expression.formulation%>" required>
+            <datalist id="formulations">
+                    <option value="Tablet plain">
+                    <option value="Tablet scored">
+                    <option value="Tablet coated">
+                    <option value="Tablet dispersible">
+                    <option value="Tablet, chewable">
+                    <option value="Tablet fixed dose combination">
+                    <option value="Tablet (co-pack)">
+                    <option value="Tablet vaginal (pessary)">
+                    <option value="Capsule (hard gelatine)">
+                    <option value="Capsule (soft gelatine)">
+                    <option value="Solution/syrup (oral)">
+                    <option value="Solution/drops, sterile (Ophthalmological)">
+                    <option value="Solution/drops, non-sterile (Nasal/Otological)">
+                    <option value="Suspension (oral)">
+                    <option value="Granules/powder for reconstitution (oral)">
+                    <option value="Pellets/sprinkles (oral)"> 
+                    <option value="Solution for injection (sterile)">
+                    <option value="Suspension for injection (sterile)">
+                    <option value="Concentrate for injection (sterile)">
+                    <option value="Freeze dried formulation for injection (sterile)">
+                    <option value="Dry powder for injection (sterile)">   
+                    <option value="Ointment/cream">
+                    <option value="Ointment sterile (Ophthalmological)">
+                    <option value="Suppositories (rectal)">
+                    <option value="Other">
+                </datalist>
+                <br>
+
+<div class="row">
+    <div class="col">
+        <label class="form-label" for="strength">Strength</label>
+        <input class="form-control" type="text" id="strength" name="expression[strength]" value="<%=expression.strength%>"required>
+    </div>
+    <div class="col">
+        <label class="form-label"  for="unit">Unit</label>
+        <input class="form-control" type="text" id="unit" name="expression[unit]" value="<%=expression.unit%>"required>
+    </div>
+  </div>   
+  <br>  
+        <div class="mb-3">
+            <label class="form-label" for="standard" class="form-label">Finished Product Specification</label>
+            <input class="form-control" list="standards" name="expression[standard]" id="standard" value="<%=expression.standard%>" required>
+            <datalist id="standards">
+                    <option value="USP">
+                    <option value="USP + other tests">
+                    <option value="BP/PhEUR">
+                    <option value="BP/PhEUR + other tests">
+                    <option value="BP/PhEUR USP combination">
+                    <option value="IP">
+                    <option value="In House (INH)">
+                    <option value="Other">
+                </datalist>
+<br>
+
+<div class="mb-3">
+    <label class="form-label" for="packSize">Packsize</label>
+    <input class="form-control" type="number" id="packSize" name="expression[packSize]" value="<%=expression.packSize%>" required>
+</div>
+<div class="mb-3">
+    <label class="form-label" for="packaging">Primary packaging</label>
+    <input class="form-control" type="text" id="packaging" name="expression[packaging]" value="<%=expression.packaging%>" required>
+</div>
+<div class="mb-3">
+    <label class="form-label" for="hosp_packaging">Hospital pack</label>
+    <input class="form-control" type="text" id="hosp_packaging" name="expression[hosp_packaging]" value="<%=expression.hosp_packaging%>" required>
+</div>
+
+
+        <div class="mb-3">
+            <label class="form-label" for="shelflife">Shelflife claim</label>
+            <input class="form-control" type="number" id="shelflife" name="expression[shelflife]" value="<%=expression.shelflife%>" required>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label" for="storage" class="form-label">Labeled Storage conditions</label>
+            <input class="form-control" list="conditions" id="storage" name="expression[storage]" value="<%=expression.storage%>" required>
+            <datalist id="conditions">
+                <option value="Store in a dry place, below 25C">
+                <option value="Store in a dry place, below 30C"> 
+                <option value="Store in ambient conditions (or equivalent)">
+                <option value="Store Cool (2-8C)">   
+                <option value="Store in Freezer (<0C)">
+                <option value="Store in Deep Freezer (<20C)"> 
+                <option value="Store in Ulralow Freezer (<70C)">                         
+                <option value="not provided"> 
+            </datalist>
+
+<br>
+
+    <hr style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
+    
+ 
+    <div class="mb-3">
+                <label class="form-label" for="current_other">Registered and marketed in (other) countries:</label>
+                <input class="form-control" type="text" id="current_other" name="expression[current_other]" value="<%=expression.current_other%>">
+    </div>
+
+        <hr style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
+        
+        
+        <div class="row">
+            <p class="mt-3">Contact for this submission:</p>
+            <div class="col">
+                <label class="form-label" for="tel">Tel</label>
+                <input class="form-control" type="text id="tel" name="expression[tel]" value="<%=expression.tel%>" required>
+            </div>
+            <div class="col">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" type="email" id="email" name="expression[email]" value="<%=expression.email%>" required>
+            </div>
+        </div>
+
+
+
+        <hr style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
+
+        <div class="mb-3">
+            <label>Upload more images</label>
+          <div class="form-file custom-file">
+              <input type="file" class="form-file-input" id="image" name="image" multiple>
+              <label class="form-file-label" for="image">
+                  <span class="form-file-text custom-file-label">Select Product image(s)...</span>
+                  <span class="form-file-button">Browse</span>
+              </label>
+          </div>
+      </div>
+
+      <div class="mb-3">
+        <% expression.images.forEach(function(img, i) { %>
+        <img src="<%=img.thumbnail%>" class="img-thumbnail" alt="">
+        <div class="form-check-inline">
+            <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+        </div>
+        <label for="image-<%=i%>">Delete?</label>
+        <% })%>
+      </div>
+
+<br>
+<div class="mb-3">
+        <button class="btn btn-primary">Update Expression</button>
+    </div>
+    </form>

@@ -1,0 +1,42 @@
+<% layout('layouts/boilerplate')%>
+
+    <div class="container mt-3">
+        <h1>Extend EOI Closing Date</h1>
+
+        <h2>
+            Product: <%=product.inn%> <%=product.dosageForm%>
+            <%=product.strength%> <%=product.unit%> </h2>
+            <br>
+          <h4><p>Current: <%=product.close.toDateString()%></p> </h4> 
+       
+
+
+          <div class="row">
+            <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+                <div class="card shadow">
+                    <div class="card-body">
+    
+        <form action="/products/<%=product._id%>?_method=PUT" method="POST">
+
+        
+        
+        
+        
+        
+        <div class="mb-3">
+            <label class="form-label" for="close">New closing date</label>
+            <input class="form-control" type="date" id="close" name="product[close]" ">
+        </div>
+
+      
+        <br>
+        <br>
+        <div>
+            <button class=" btn btn-warning btn-sm">Confirm</button>
+        </div>
+    </form>
+
+        </div>   
+            </div>   
+                </div>   
+    </div>          

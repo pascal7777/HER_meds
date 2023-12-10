@@ -1,0 +1,191 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="row"></div>
+    <h1 class="text-center">Edit Product details</h1>
+    <div class="col-6 offset-3">
+
+    <form action="/products/<%=product._id%>?_method=PUT" method="POST" novalidate class = "validated-form">
+       
+       <br>
+
+       <div class="mb-3">
+        <label class="form-label" for="inn">INN Name(s)</label>
+        <input class="form-control" type="text" id="inn" name="product[inn]" value="<%=product.inn%>"required>
+        <datalist id="innlist">
+            <option value="Acetaminophen (Paracetamol)">
+                <option value="Acetyl Salicylic Acid (Aspirin)">
+                <option value="Activated Charcoal">
+                <option value="Adrenaline ">
+                <option value="Aluminium hydroxide + Magnesium hydroxide">
+                <option value="Aminophylline">
+                <option value="Amitriptylline">
+                <option value="Amoxycillin">
+                <option value="Ampicillin">
+                <option value="Atenolol">
+                <option value="Atropine">
+                <option value="Benzathine Benzyl Penicillin ">
+                <option value="Betamethasone + Neomycine">
+                <option value="Calcium gluconate">
+                <option value="Carbamazepin">
+                <option value="Ceftriaxone">
+                <option value="Chlorhexidine">
+                <option value="Chlorhexidine + Cetrimide ">
+                <option value="Chlorine releasing comp.">
+                <option value="Chloroquine (base) ">
+                <option value="Chlorpheniramine Maleate">
+                <option value="Ciprofloxacin">
+                <option value="Ciprofloxacin (restricted indication)">
+                <option value="Cloxacillin ">
+                <option value="Co-Trimoxazole (Sulfamethoxazole+Trimeth oprime)">
+                <option value="Compound Solution of Sodium Lactate (Ringer lactate)">
+                <option value="Diazepam">
+                <option value="Diclofenac">
+                <option value="Doxycycline   ">
+                <option value="Ergometrine">
+                <option value="Erythromycin (Ethyl succinate)">
+                <option value="Famotidine">
+                <option value="Ferrous Sulfate">
+                <option value="Ferrous Sulphat+Folic Acid ">
+                <option value="Ferrous Sulphate">
+                <option value="Fluoxetine">
+                <option value="Folic Acid">
+                <option value="Furosemide">
+                <option value="Gentamycine">
+                <option value="Glucose">
+                <option value="Glucose + Sodium chloride">
+                <option value="Haloperidol">
+                <option value="Hydralazine">
+                <option value="Hydrochlorothiazid">
+                <option value="Hydrocortisone ">
+                <option value="Ibuprofen">
+                <option value="Iodine Polyvidone">
+                <option value="Ketamine">
+                <option value="Levonorgestrel ">
+                <option value="Lidocaine">
+                <option value="Lidocaine + Adrenaline">
+                <option value="Lindane">
+                <option value="Magnesium Sulphate">
+                <option value="Male Condoms">
+                <option value="Mebendazole">
+                <option value="Medroxy Progesterone">
+                <option value="Methyl dopa">
+                <option value="Methyl Rosanilinium Chloride (Gentian Violet) ">
+                <option value="Metoclopramid ">
+                <option value="Metronidazol  ">
+                <option value="Morphine">
+                <option value="Multimicronutrients">
+                <option value="Naloxone">
+                <option value="Neostigmine">
+                <option value="Nifedipine">
+                <option value="Nitrofurantoin">
+                <option value="Nystatin">
+                <option value="Nystatin   ">
+                <option value="Oral Rehydration Salt (for Glucose Electrolyte solution)">
+                <option value="Oxytocin">
+                <option value="Phenobarbital">
+                <option value="Phenoxy Methyl Penicillin (Penicillin V)">
+                <option value="Potassium Chloride">
+                <option value="Primaquine">
+                <option value="Retinol (Vit A)">
+                <option value="Salbutamol">
+                <option value="Silver Sulfadiazine">
+                <option value="Sodium Chloride">
+                <option value="Sodium Stibogluconate">
+                <option value="Suxamethonium (Succinyl Choline)">
+                <option value="Tetracaine">
+                <option value="Tetracycline">
+                <option value="Tramadol">
+                <option value="Water for injection">
+                <option value="Zinc">
+                <option value="Zinc Oxide">
+        </datalist>
+    </div>
+        
+    <div class="row">
+        <div class="col">
+            <label class="form-label" for="strength">Strength</label>
+            <input class="form-control" type="text" id="strength" name="product[strength]" value="<%=product.strength%>" required>
+        </div>
+
+        <div class="col">
+            <label class="form-label"  for="unit">Unit</label>
+            <input class="form-control"  type="text" id="unit" name="product[unit]" value="<%=product.unit%>" required>
+        </div>
+    </div>
+
+    <div class="mb-3 mt-3">
+        <label class="form-label" for="formulation" class="form-label">Dosage Form</label>
+        <input class="form-control" list="formulations"name="product[formulation]" id="formulation" value="<%=product.formulation%>" required> 
+        <datalist id="formulations">
+                <option value="Tablet plain">
+                <option value="Tablet scored">
+                <option value="Tablet coated">
+                <option value="Tablet dispersible">
+                    <option value="Tablet chewable"></option>
+                <option value="Tablet fixed dose combination">
+                <option value="Tablet (co-pack)">
+                <option value="Tablet vaginal (pessary)">
+                <option value="Capsule">
+                <option value="Capsule (soft)">
+                <option value="Solution/syrup (oral)">
+                <option value="Solution/drops, sterile (Ophthalmological)">
+                <option value="Solution/drops, non-sterile (Nasal/Otological)">
+                <option value="Suspension (oral)">
+                <option value="Granules/powder for reconstitution (oral)">
+                <option value="Pellets/sprinkles (oral)"> 
+                <option value="Solution for injection (sterile)">
+                <option value="Suspension for injection (sterile)">
+                <option value="Concentrate for injection (sterile)">
+                <option value="Freeze dried formulation for injection (sterile)">
+                <option value="Dry powder for injection (sterile)">   
+                <option value="Ointment/cream">
+                <option value="Ointment sterile (Ophthalmological)">
+                <option value="Suppositories (rectal)">
+                <option value="Other">
+            </datalist>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="packSize">Packsize</label>
+        <input class="form-control" type="number" id="packSize" name="product[packSize]" value="<%=product.packSize%>">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="packaging">Packaging</label>
+        <input class="form-control" type="text" id="packaging" name="product[packaging]" value="<%=product.packaging%>">
+    </div>
+
+
+    <div class="mb-3 mt-3">
+        <label class="form-label" for="hosp_packaging">Hospital Pack</label>
+        <input class="form-control" type="text" id="hosp_packaging" name="product[hosp_packaging]" value="<%=product.hosp_packaging%>">
+    </div>
+
+
+    <div class="mb-3">
+        <label class="form-label" for="shelflife" class="form-label">Minimum Shelflife at delivery (m)</label>
+        <input class="form-control" type="number" id="shelflife" name="product[shelflife]" value="<%=product.shelflife%>">
+            required>
+        <datalist id="mors">
+                <option value=12>
+                <option value=24>
+                <option value=36>
+       </datalist>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="demand">Nr Provinces</label>
+        <input class="form-control" type="number" id="demand" name="product[demand]" value="<%=product.demand%>">
+    </div>
+
+    
+    <div class="mb-3">
+        <label class="form-label" for="remarks">Remarks</label>
+        <textarea class="form-control" type="text" id="remarks" name="product[remarks]"value="<%=product.remarks%>"></textarea>
+    </div>
+
+    
+        <br>
+        <button class="btn btn-warning">Update Product</button>
+    </form>
+  

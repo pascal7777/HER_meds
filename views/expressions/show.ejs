@@ -1,0 +1,481 @@
+<% layout('layouts/boilerplate')%>
+    
+<div class="row">
+    <div class="col-sm-9">
+        <div class="card">
+            <div class="card-body">
+                <h2 style="font-size: 2vw">Company: <%= expression.company%></h2>
+                <h4 style="font-size: 2vw">Product: <a href="/products/<%=expression.product._id%>"><%=expression.product.inn%> <%=expression.product.strength%> <%=expression.product.unit%></a></h4>
+            
+            
+            <div class="row">
+                <div class="col-sm-6" style=" line-height:1.1">
+                        <span style="color:rgb(119, 119, 121); font-size: 1vw"> Submitted:<%= expression.author.username%> (<%= expression.author.company%>)
+                        <br><em>On: <%= expression.createdAt.toDateString()%></em>
+                        <% if( (expression.createdAt - Date.now())/604800000 <= -1)      {%>
+                            (<%= - Math.floor( (expression.createdAt - Date.now())/1209600000)%> week(s) ago)
+                            <% } %> 
+                        </span>
+                </div>     
+                <div class="col-sm-6" style=" line-height:1.1">   
+                        <% if(expression.createdAt.toDateString() != expression.updatedAt.toDateString()) {%>
+                        <span style="color:rgb(119, 119, 121); font-size: 1vw"> Edited on:
+                        <!-- <%= expression.editor.username%> (<%= expression.editor.company%>) -->
+                        <br><em><%= expression.updatedAt.toDateString()%></em>
+                        <% if( (expression.updatedAt - Date.now())/604800000 <= -1)      {%>
+                            (<%= - Math.floor( (expression.updatedAt - Date.now())/1209600000)%> week(s) ago)
+                             <% } %>  
+                        </span>
+                        <% } %>
+                </div>
+            </div> 
+        </div>  
+    </div>
+</div>
+
+
+
+    <div class="col-sm-3">
+    <div class="card">
+    <div class="card-body">
+                    
+                <h2 style="font-size: 1.5vw">EOI Status</h2> 
+                
+                  <h5 style="font-size: 1.5vw"> 
+                      
+                    <% if(expression.status==="ONLINE CHECK" ) {%>
+                        <span style="color:rgb(8, 96, 249)">
+                            <%=expression.status %>
+                        </span>
+                        <% } %>
+
+                        <% if(expression.status==="ACCEPT" ) {%>
+                            <span style="color:rgb(8, 96, 249)">
+                                <%=expression.status %>
+                            </span>
+                            <% } %>
+
+                            <% if(expression.status==="REJECT" ) {%>
+                                <span style="color:rgb(135, 6, 240)">
+                                    <%=expression.status %>
+                                </span>
+                                <% } %>
+                                            </h5> 
+    </div>
+    </div>
+    </div>
+    
+</div>   
+    
+<div class="row">
+
+    <%  if( currentUser && currentUser.isAdmin || currentUser && currentUser.isQA) {%>
+
+    <div class="col-sm-12">            
+    <p class="mt-3"><a class="btn btn-warning btn-lg" href="/expressions/<%=expression._id%>/status" role="button">Change EOI Status</a></p>         
+    </div>
+      <% } %>
+</div>
+
+
+<br>
+<div class="row">
+
+    <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 style="font-size: 2vw">Manufacturer  </h5>
+                <ul>
+                    <% if(expression.manufacturer != "" ) {%>
+                            <li><%= expression.manufacturer%>
+                            </li>
+                            <li>   <%= expression.mf_country%>
+                            </li>
+                        <% } %>
+                </ul>
+              
+                
+                    <hr>
+                    Contacts for this EOI:     
+                <ul>    
+                    <li>Telephone: <%= expression.tel %> 
+                    </li>
+                    <li>Email: <%= expression.email %> 
+                    </li>
+                </ul>
+                        
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                    
+                <h5 style="font-size: 2vw">Product Offered </h5>
+                    
+            <ul>
+                <li>
+                <% if(expression.product.formulation === expression.formulation) {%>
+                <span style="color:rgb(10, 10, 10)">
+                Formulation: <%=expression.formulation %> 
+                </span>
+                <% } %>
+                <% if(expression.product.formulation != expression.formulation) {%>
+                <span style="color:rgb(249, 104, 8)">
+                Formulation: <%=expression.formulation %> 
+                </span>
+                <% } %>
+                </li>
+                <li>
+                <% if(expression.product.strength  === expression.strength) {%>
+                <span style="color:rgb(10, 10, 10)">
+                Strength: <%=expression.strength %>  <%=expression.unit %> 
+                </span>
+                <% } %>
+                <% if(expression.product.strength != expression.strength) {%>
+                <span style="color:rgb(249, 104, 8)">
+                Strength: <%=expression.strength %>  <%=expression.unit %> 
+                </span>
+                <% } %>
+                </li>
+                <li>
+                <% if(expression.product.standard === expression.standard) {%>
+                <span style="color:rgb(10, 10, 10)">
+                FP Specification: <%=expression.standard %> 
+                </span>
+                <% } %>
+                <% if(expression.product.standard != expression.standard) {%>
+                <span style="color:rgb(249, 104, 8)">
+                FP Specification: <%=expression.standard%> 
+                </span>
+                <% } %>
+                </li>
+                <li>
+                <% if(expression.product.packSize === expression.packSize) {%>
+                <span style="color:rgb(10, 10, 10)">
+                Pack size (units): <%= expression.packSize%> 
+                </span>
+                <% } %>
+                <% if(expression.product.packSize != expression.packSize) {%>
+                <span style="color:rgb(249, 104, 8)">
+                Pack size: <%= expression.packSize%> 
+                </span>
+                <% } %>
+                </li>
+                <li>
+                <% if(expression.product.packaging === expression.packaging) {%>
+                <span style="color:rgb(10, 10, 10)">
+                Primary packaging: <%= expression.packaging%> 
+                </span>
+                <% } %>
+                <% if(expression.product.packaging != expression.packaging) {%>
+                <span style="color:rgb(249, 104, 8)">
+                Primary packaging: <%= expression.packaging%> 
+                </span>
+                <% } %>
+                </li>
+                <li>
+                <% if(expression.product.hosp_packaging === expression.hosp_packaging ) {%>
+                <span style="color:rgb(10, 10, 10)">
+                Hospital pack: <%= expression.hosp_packaging %> 
+                </span>
+                 <% } %>
+                <% if(expression.product.hosp_packaging  != expression.hosp_packaging ) {%>
+                <span style="color:rgb(249, 104, 8)">
+                Hospital pack: <%= expression.hosp_packaging %> 
+                </span>
+                <% } %>
+                </li>
+                <li>
+                <% if(expression.product.shelflife === expression.shelflife) {%>
+                <span style="color:rgb(10, 10, 10)">
+                Shelflife (m): <%= expression.shelflife%> 
+                </span>
+                <% } %>
+                <% if(expression.product.shelflife != expression.shelflife) {%>
+                <span style="color:rgb(249, 104, 8)">
+                Shelflife (m): <%= expression.shelflife%> 
+                </span>
+                <% } %>
+                </li>
+                
+                <hr>
+
+            
+                <li>
+                Recommended storage conditions:<br><em><%= expression.storage%></em>
+                </li>
+                <li>
+                Marketed in other countries:<br><em><%= expression.current_other%></em>
+                </li>
+                <li>
+                <% if(expression.afda === "Yes") {%>
+                    AFDA clearance: 
+                    <span style="color:rgba(11, 136, 5, 0.935)"><em><%= expression.afda%></em></span>
+                <% } else{ %>
+                    AFDA clearance:
+                    <span style="color:rgb(34, 9, 223)"><em><%= expression.afda%></em></span>
+                <% } %>
+                </li>
+             </ul>   
+               
+            <hr>
+
+
+            <h5 style="font-size: 2vw">  Supporting Docs:</h5>
+          
+               
+            <div id="expressionCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                        <% expression.images.forEach((img, i) => {  %>
+                        <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
+                            <img src="<%= img.url%>" class="d-block w-100" alt="">
+                        </div>
+                        <% }) %>
+                </div>
+                    <% if(expression.images.length > 1) {%>
+                    <a class="carousel-control-prev" href="#expressionCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#expressionCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    <% } %>
+            </div>
+                 
+                    
+            </div>
+        </div>
+    </div> 
+
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                
+            <h5 style="font-size: 2vw">Product Requested </h5>
+                
+            <ul>
+                <li>
+                <% if(expression.product.formulation === expression.formulation) {%>
+                <span style="color:rgb(10, 10, 10)">
+                Formulation: <%=expression.product.formulation %> 
+                </span>
+                <% } %>
+                <% if(expression.product.formulation != expression.formulation) {%>
+                <span style="color:rgb(249, 104, 8)">
+                Formulation: <%=expression.product.formulation %> 
+                </span>
+                <% } %>
+                </li>
+                
+                <li>
+                <% if(expression.product.strength  === expression.strength) {%>
+                <span style="color:rgb(10, 10, 10)">
+                Strength: <%=expression.product.strength %>  <%=expression.product.unit %> 
+                </span>
+                <% } %>
+                <% if(expression.product.strength != expression.strength) {%>
+                <span style="color:rgb(249, 104, 8)">
+                Strength: <%=expression.product.strength %>  <%=expression.product.unit %> 
+                </span>
+                <% } %>
+                </li>
+                
+                <li>
+                <% if(expression.product.standard === expression.standard) {%>
+                <span style="color:rgb(10, 10, 10)">
+                FP Specification: <%=expression.product.standard %> 
+                </span>
+                <% } %>
+                <% if(expression.product.standard != expression.standard) {%>
+                <span style="color:rgb(249, 104, 8)">
+                FP Specification: <%=expression.product.standard%> 
+                </span>
+                <% } %>
+                </li>
+
+                <li>
+                <% if(expression.product.packSize === expression.packSize) {%>
+                <span style="color:rgb(10, 10, 10)">
+                Pack size (units): <%= expression.product.packSize%> 
+                </span>
+                <% } %>
+                <% if(expression.product.packSize != expression.packSize) {%>
+                <span style="color:rgb(249, 104, 8)">
+                Pack size: <%= expression.product.packSize%> 
+                </span>
+                <% } %>
+                </li>
+
+                <li>
+                <% if(expression.product.packaging === expression.packaging) {%>
+                <span style="color:rgb(10, 10, 10)">
+                Primary packaging: <%= expression.product.packaging%> 
+                </span>
+                <% } %>
+                <% if(expression.product.packaging != expression.packaging) {%>
+                <span style="color:rgb(249, 104, 8)">
+                Primary packaging: <%= expression.product.packaging%> 
+                </span>
+                <% } %>
+                </li>
+
+                <li>
+                <% if(expression.product.hosp_packaging === expression.hosp_packaging) {%>
+                <span style="color:rgb(10, 10, 10)">
+                Hospital pack: <%= expression.product.hosp_packaging%> 
+                </span>
+                <% } %>
+                <% if(expression.product.hosp_packaging != expression.hosp_packaging) {%>
+                <span style="color:rgb(249, 104, 8)">
+                Hospital pack: <%= expression.product.hosp_packaging%> 
+                </span>
+                <% } %>
+                </li>
+    
+                <li>
+                <% if(expression.product.shelflife === expression.shelflife) {%>
+                <span style="color:rgb(10, 10, 10)">
+                Shelflife (m): <%= expression.product.shelflife%> 
+                </span>
+                <% } %>
+                <% if(expression.product.shelflife != expression.shelflife) {%>
+                <span style="color:rgb(249, 104, 8)">
+                Shelflife (m): <%= expression.product.shelflife%> 
+                </span>
+                <% } %>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div> 
+
+</div> 
+
+<br>
+
+<div class="row">                   
+    
+    <div class="col-sm-4">
+        <span style="color:rgb(162, 164, 165)">
+        <% if(expression.status === "ONLINE CHECK") {%>
+            <p> <a class="btn btn-xs btn-warning" href="/expressions/<%=expression._id%>/edit">Edit</a></p>
+        <form action="/expressions/<%=expression._id%>?_method=DELETE" method="POST">
+        <button class="btn btn-xs btn-danger">Delete</button>
+        </form>
+        <% } %>
+    </div>
+
+
+</div> 
+
+<br>
+
+<div class="row">
+
+    <% if(expression.status==="ONLINE CHECK" ) {%>
+        <div class="col-12">
+            <h5 style="font-size: 2vw">Questions</h5>
+            <form action="/expressions/<%=expression._id%>/checks" method="POST" class="mb-3 validated-form" novalidate>
+                <div class="mb-3">
+                    <!-- <label class="form-label" for="rating">Rating (1-10)</label> -->
+                    <!-- <input class="form-range" type="range" min="1" max="10" name="check[rating]" id="rating"> -->
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="body">Enter</label>
+                    <textarea class="form-control" name="check[body]" id="body" cols="30" rows="3" required></textarea>
+                
+                </div>
+                <button class="btn btn-xs btn-success ">Submit</button>
+            </form>
+            <% for(let check of expression.checks) { %>
+            <div class="card mb-3 ">
+                <div class="card-body">
+                    <!-- <h5 class="card-title">Rating: <%= check.rating %></h5> -->
+                    <p class="card-text"><%= check.body %> </p>
+                    <p><em><span style="color:rgb(33, 32, 32); font-size: 0.8vw" ">Author: <%= check.author.username %> at <%= check.createdAt.toDateString() %></span></em></p>
+                    <form action="/expressions/<%=expression._id%>/checks/<%=check._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+            <% } %>
+        </div>
+        <% } %>
+
+
+    <% if(expression.status=== "ACCEPT") {%>
+    <div class="col-12">
+        <h5 style="font-size: 2vw">Remarks</h5>
+        <form action="/expressions/<%=expression._id%>/comments" method="POST" class="mb-3 validated-form" novalidate>
+            <!-- <div class="mb-3">
+                <label class="form-label" for="rating">Rating (1-10)</label>
+                <input class="form-range" type="range" min="1" max="10" name="comment[rating]" id="rating">
+            </div> -->
+            <div class="mb-3">
+                <label class="form-label" for="body">Enter</label>
+                <textarea class="form-control" name="comment[body]" id="body" cols="30" rows="3" required></textarea>
+            
+            </div>
+            <button class="btn btn-xs btn-success">Submit</button>
+        </form>
+        <% for(let comment of expression.comments) { %>
+        <div class="card mb-3 ">
+            <div class="card-body">
+                <h5 class="card-title">Rating: <%= comment.rating %></h5>
+                <p class="card-text">Comment: <%= comment.body %></p>
+                <p><em><span style="color:rgb(33, 32, 32);  font-size: 0.8vw">Author: <%= comment.author.username %> at <%= comment.createdAt.toDateString() %></span></em></p>
+                <form action="/expressions/<%=expression._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+        <% } %>
+    </div>
+    <% } %>
+
+    <% if(expression.status==="REJECT"  ) {%>
+    <div class="col-6">
+        <h5 style="font-size: 2vw">Reasons</h5>
+        <form action="/expressions/<%=expression._id%>/evaluations" method="POST" class="mb-3 validated-form" novalidate>
+            <!-- <div class="mb-3">
+                <label class="form-label" for="rating">Rating (1-10)</label>
+                <input class="form-range" type="range" min="1" max="10" name="evaluation[rating]" id="rating">
+            </div> -->
+            <div class="mb-3">
+                <label class="form-label" for="body">Enter</label>
+                <textarea class="form-control" name="evaluation[body]" id="body" cols="30" rows="3" required></textarea>
+            
+            </div>
+            <button class="btn btn-xs btn-success">Submit</button>
+        </form>
+        <% for(let evaluation of expression.evaluations) { %>
+        <div class="card mb-3 ">
+            <div class="card-body">
+                <h5 class="card-title">Rating: <%= evaluation.rating %></h5>
+                <p class="card-text">Evaluation: <%= evaluation.body %></p>
+                <p><em><span style="color:rgb(33, 32, 32); font-size: 0.8vw">Author: <%= evaluation.author.username %> at <%= evaluation.createdAt.toDateString() %></span></em></p>
+                <form action="/expressions/<%=expression._id%>/evaluations/<%=evaluation._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+        <% } %>
+    </div>
+    <% } %>
+
+
+   
+
+        
+
+            
+    </div>
+
+</div>
+
+
+

@@ -1,0 +1,67 @@
+<% layout('layouts/boilerplate')%>
+
+    <div class="container mt-3">
+        <h1>Status Change</h1>
+       
+        <br>
+        <h3>
+            Product: <%=expression.product.inn%> - <%=expression.product.formulation%>
+                <br>Source: <%=expression.company%> - <%=expression.country%>
+        </h3>
+
+
+        <!-- 'RECEIVED', 'SCREENED', 'UNDER EVALUATION', 'APPROVED', 'ON HOLD' -->
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card shadow">
+                    <div class="card-body">
+
+                        <form action="/expressions/<%=expression._id%>?_method=PUT" method="POST" novalidate class = "validated-form" enctype="multipart/form-data">
+
+            <br>
+        
+
+          
+            <label for="status">
+                <h4>Update EOI Status from 
+                    
+                <% if(expression.status==="ONLINE CHECK" ) {%>
+                    <span style="color:rgb(48, 8, 249)">
+                        <%=expression.status %>
+                    </span>
+                    <% } %>
+                   
+                    <% if(expression.status==="ACCEPT" ) {%>
+                        <span style="color:rgb(48, 8, 249)">
+                            <%=expression.status %>
+                        </span>
+                        <% } %>
+
+                            <% if(expression.status==="REJECT" ) {%>
+                                <span style="color:rgb(6, 240, 185)">
+                                    <%=expression.status %>
+                                </span>
+                                <% } %>
+
+                to:</h4>
+            </label>
+            <hr>
+            <h5><select name="expression[status]" id="status">
+                    <option value="">--Select--</option>
+                    <option value="ACCEPT">Accepted for RFQ short list</option>
+                    <option value="REJECT">Not eligible for RFQ</option>
+                </select></h5>
+            <br>
+
+          
+            <br>
+            <br>
+            <div>
+                <button class=" btn btn-warning btn-sm">Confirm Status Change</button>
+            </div>
+        </form>
+
+
+    </div>   </div>   </div>   </div>
+    </div>
+  

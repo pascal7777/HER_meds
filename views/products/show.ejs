@@ -1,0 +1,139 @@
+<% layout('layouts/boilerplate')%>
+    
+    <h1 style="font-size: 2vw">
+        <%= product.inn %> - 
+        <%= product.formulation%>
+    </h1>
+
+<div class="row">
+<div class="col-sm-3" style=" line-height:1.1">
+        <span style="color:rgb(119, 119, 121); font-size: 1vw"> Created: <%= product.author.username%> 
+    <br><em>On: <%= product.createdAt.toDateString()%></em> 
+    <% if( (product.createdAt - Date.now())/604800000 <= -1)      {%>
+    (<%= - Math.floor( (product.createdAt - Date.now())/1209600000)%> week(s) ago)
+    <% } %>    
+    </span>
+</div> 
+<div class="col-sm-3" style=" line-height:1.1">
+    <% if(product.createdAt.toDateString() != product.updatedAt.toDateString()) {%>
+        <span style="color:rgb(119, 119, 121); font-size: 1vw"> Edited: <%= product.editor.username%>
+   <br><em>On: <%= product.updatedAt.toDateString()%></em> 
+     <% if( (product.updatedAt - Date.now())/604800000 <= -1)      {%>
+    (<%= - Math.floor( (product.updatedAt - Date.now())/1209600000)%> week(s) ago)
+     <% } %>    
+    </span>
+    <% } %>
+</div>   
+</div>  
+    
+
+    <div class="row">
+ 
+        <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h2 style="font-size: 2vw">Product Details Requested</h2>
+                <ul><h3 style="font-size: 1.5vw">
+                    <li >Dosage form:<span style="color:rgb(119, 119, 121)"> <%=product.formulation %> </span> 
+                    </li> 
+                    <li>Strength:<span style="color:rgb(119, 119, 121)">  <%=product.strength %> <%=product.unit%></span> 
+                    </li>
+                    <li>Primary packaging:<span style="color:rgb(119, 119, 121)">  <%=product.packSize %> in <%=product.packaging%> </span> 
+                    </li>
+                    <li>Hospital pack:<span style="color:rgb(119, 119, 121)">  <%=product.hosp_packaging %></span> 
+                    </li>
+                    <li>Minimum Shelflife (m):<span style="color:rgb(119, 119, 121)">  <%=product.shelflife %></span> 
+                    </li>
+                </ul></h3>
+
+                <%  if( product.remarks ==="")  {%>
+                <p></p>
+                <% } else{ %>
+                    <p>Comment: <%=product.remarks %></p>
+                    <% } %>
+                <hr> 
+
+                <br>
+              
+                <%  if( currentUser && product.author.equals(currentUser._id) || currentUser &&
+                currentUser.isAdmin || currentUser &&
+                        currentUser.isQA)  {%>
+                <p> <a class="btn btn-xs btn-warning" href="/products/<%=product._id%>/edit">Edit</a></p>
+
+                <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
+                <button class="btn btn-xs btn-danger">Delete Product</button>
+                </form>
+                <% } %>
+            
+              </div>
+            </div>
+          </div>
+          
+        <div class="col-sm-6">
+            
+            <div class="card">
+
+                <div class="card-body">
+
+                    <h2 style="margin-bottom: 0; font-size: 2vw">Closing: <%= product.close.toDateString()%></h2>
+                     
+                    <%  if( product.close < Date.now())  {%>
+                    <h3 style="font-size: 2vw"><em>  <span style="color:rgb(157, 6, 6)">(<%= moment(product.close).fromNow() %>)</span></em></h3>  
+                    <% } else{ %>
+                        <h3 style="font-size: 2vw"><em>(<%= moment(product.close).fromNow() %>)</em></h3>  
+                    <% } %>
+
+
+<div class="row">
+<%  if( currentUser && currentUser.isQA) {%>
+<div class="col-sm-12">            
+<p class="mt-3"><a class="btn btn-xs btn-success" href="/products/<%=product._id%>/close" role="button">Extend/Shorten Validity</a></p>         
+</div>
+  <% } %>
+</div>
+
+
+
+
+                    <br>
+                    <h3 style="font-size: 2vw">Expressions Received  (<%=product.expressions.length%>)</h3>        
+                    <ul>
+                    <% for(let expression of product.expressions) {%>
+                      
+                            <%  if( currentUser && expression.author.equals(currentUser._id) || currentUser &&
+                            currentUser.isAdmin || currentUser &&
+                        currentUser.isQA)  {%>
+                            <li> <a href="/expressions/<%=expression._id%>">
+                                <%=expression.company%> - <%=expression.country%></a> <br>Date: <%=expression.createdAt.toDateString()%>
+                            </li>
+                          
+                    
+                            <% } else{ %>
+        
+                            <li>    
+                                <%=expression.company%> - <%=expression.country%> on: <%=expression.createdAt.toDateString()%>
+                            </li>
+                            <% } %>
+
+                        
+                    <% } %>
+                   
+                    </ul>
+       
+               <br>
+                    <p>  <%  if( product.close > Date.now())  {%>
+                    <a class="btn btn-xs btn-primary" href="/products/<%=product._id%>/expressions/new">Add
+                        a New
+                      Expression</a>
+                      <% } %>  </p>
+                </div>
+    
+          
+
+            </div>
+        </div>  
+       
+    </div>
+
+        
+  

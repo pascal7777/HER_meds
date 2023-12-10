@@ -1,0 +1,27 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="font-size: 18px">HER</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/" style="font-size: 16px">Home</a>
+                <a class="nav-link" href="/products" style="font-size: 16px">Product List</a>
+                <a class="nav-link" href="/expressions" style="font-size: 16px">EOI list</a>
+            </div>
+
+            <div class="navbar-nav ml-auto">
+                <% if(!currentUser) {%>
+                <a class="nav-link" href="/login" style="font-size: 16px">Login</a>
+                <a class="nav-link" href="/register" style="font-size: 16px">Register</a>
+                <% } else {%> <div class="mt-2" style="font-size: 16px; color:white"><%=currentUser.username%></div>
+                <a class="nav-link" href="/logout" style="font-size: 16px">Logout</a>
+                <% } %>
+            </div>
+
+
+        </div>
+    </div>
+</nav>

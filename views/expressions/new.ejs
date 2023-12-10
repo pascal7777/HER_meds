@@ -1,0 +1,213 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="row">
+ 
+    <h1 class="text-center">New Expression</h1>
+  
+      
+    <h2 class="text-center"><%= product.inn%> - <%= product.formulation %></h2>
+    
+<div class="col-6 offset-3">
+    <form action="/products/<%=product._id%>/expressions" method="POST" novalidate class = "validated-form" enctype="multipart/form-data">
+       
+        <div class="mb-3">
+                <label class="form-label" for="company">Supplier
+                    <span style="color:rgb(162, 164, 165)"><p style="font-size: 12px" class="mb-1"><em>Full Company name</em></p></span>
+                </label>
+                <input class="form-control" type="text" id="company" name="company" required>
+         </div>
+        
+        <div class="mb-3">
+            <label class="form-label" for="manufacturer">Manufacturer
+                <span style="color:rgb(162, 164, 165)"><p style="font-size: 12px" class="mb-1"><em>If different from Supplier above</em></p></span>
+            </label>
+            <input class="form-control" type="text" id="manufacturer" name="manufacturer">
+        </div>       
+
+        <div class="mb-4">
+            <label class="form-label" for="mf_country">Country of Manufacturing</label>
+            <input class="form-control" list="country" name="mf_country" id="mf_country" placeholder="Type to search..."
+                    required>
+            <datalist id="country">
+                    <option value="Afghanistan">
+                    <option value="Pakistan">
+                    <option value="Turkiye">
+                    <option value="India">
+                    <option value="Bangladesh">
+                    <option value="China">
+                    <option value="Iran">
+                    <option value="EU">
+                    <option value="Other">
+            </datalist>
+        </div>
+
+
+        <div class="mb-4">
+            <label class="form-label" for="afda" class="form-label">The product we offer, is registered, authorized or otherwise cleared for use in Afghanistan, by the AFDA (MOH)
+                <span style="color:rgb(162, 164, 165)"><p style="font-size: 12px" class="mb-1"><em>Supporting document from AFDA will be required as well as certificates of analysis from the manufacturer of product batches imported or distributed in the past 12 months</em></p></span>
+            </label>
+            <input class="form-control" list="afdayn" name="afda" id="afda" placeholder="Y/N..."
+                required>
+            <datalist id="afdayn">
+                <option value="Yes">
+                <option value="No"> 
+                <option value="To be confirmed">                      
+            </datalist>
+        </div>
+
+
+        <hr class="mb-3" style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
+        
+        <P>Submit the details of the product offered below</P>
+         <div class="mb-3">
+                <label class="form-label" for="formulation" class="form-label">Dosageform</label>
+                <input class="form-control" list="formulations"name="formulation" id="formulation" placeholder="Type to search..."
+                    required>
+                <datalist id="formulations">
+                    <option value="Tablet plain">
+                    <option value="Tablet scored">
+                    <option value="Tablet coated">
+                    <option value="Tablet dispersible">
+                    <option value="Tablet, chewable">
+                    <option value="Tablet fixed dose combination">
+                    <option value="Tablet (co-pack)">
+                    <option value="Tablet vaginal (pessary)">
+                    <option value="Capsule (hard gelatine)">
+                    <option value="Capsule (soft gelatine)">
+                    <option value="Solution/syrup (oral)">
+                    <option value="Solution/drops, sterile (Ophthalmological)">
+                    <option value="Solution/drops, non-sterile (Nasal/Otological)">
+                    <option value="Suspension (oral)">
+                    <option value="Granules/powder for reconstitution (oral)">
+                    <option value="Pellets/sprinkles (oral)"> 
+                    <option value="Solution for injection (sterile)">
+                    <option value="Suspension for injection (sterile)">
+                    <option value="Concentrate for injection (sterile)">
+                    <option value="Freeze dried formulation for injection (sterile)">
+                    <option value="Dry powder for injection (sterile)">   
+                    <option value="Ointment/cream">
+                    <option value="Ointment sterile (Ophthalmological)">
+                    <option value="Suppositories (rectal)">
+                    <option value="Other">
+                </datalist>
+         </div>
+         
+        <div class="row mb-3">
+                <div class="col">
+                    <label class="form-label" for="strength">Strength</label>
+                    <input class="form-control" type="text" id="strength" name="strength" required>
+                </div>
+                <div class="col">
+                    <label class="form-label"  for="unit">Unit</label>
+                    <input class="form-control" type="text" id="unit" name="unit" required>
+                </div>
+        </div>
+        
+        <div class="mb-3">
+                        <label class="form-label" for="standard" class="form-label">Finished Product Specification
+                            <span style="color:rgb(162, 164, 165)"><p style="font-size: 12px" class="mb-1"><em>As per product label</em></p></span>
+                        </label>
+                        <input class="form-control" list="standards"name="standard" id="standard" placeholder="Type to search..."
+                            required>
+                        <datalist id="standards">
+                                <option value="USP">
+                                <option value="USP + other tests">
+                                <option value="BP/PhEUR">
+                                <option value="BP/PhEUR + other tests">
+                                <option value="BP/PhEUR USP combination">
+                                <option value="IP">
+                                <option value="In House (INH)">
+                                <option value="Other">
+                            </datalist>
+        </div>    
+        
+        <div class="mb-3">
+            <label class="form-label" for="packSize">Packsize</label>
+            <input class="form-control" type="number" id="packSize" name="packSize" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="packaging">Primary packaging</label>
+            <input class="form-control" type="text" id="packaging" name="packaging" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="hosp_packaging">Hospital pack</label>
+            <input class="form-control" type="text" id="hosp_packaging" name="hosp_packaging" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="shelflife">Maximum Shelflife claim (months)</label>
+            <input class="form-control" type="number" id="shelflife" name="shelflife" required>
+        </div>
+
+      
+        <div class="mb-3">
+            <label class="form-label" for="storage" class="form-label">Storage conditions
+                <span style="color:rgb(162, 164, 165)"><p style="font-size: 12px" class="mb-1"><em>As per product label</em></p></span>
+            </label>
+            <input class="form-control" list="conditions" name="storage" id="storage" placeholder="Type to search..."
+                required>
+            <datalist id="conditions">
+                <option value="Store in a dry place, below 25C">
+                <option value="Store in a dry place, below 30C"> 
+                <option value="Store in ambient conditions (or equivalent)">
+                <option value="Store Cool (2-8C)">   
+                <option value="Store in Freezer (<0C)">
+                <option value="Store in Deep Freezer (<20C)"> 
+                <option value="Store in Ulralow Freezer (<70C)">                               
+                <option value="not provided"> 
+            </datalist>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label" for="current_other">Countries where this product registered and marketed</label>
+            <input class="form-control" type="text" id="current_other" name="current_other" required>
+        </div>
+
+   
+        <hr style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
+
+        <div class="mb-3">
+              <label>Upload Images and documentation
+                <span style="color:rgb(162, 164, 165)"><p style="font-size: 12px" class="mb-1"><em>certificates, label images, etcetera </em></p></span>
+              </label>
+            <div class="form-file custom-file">
+                <input type="file" class="form-file-input" id="image" name="image" multiple>
+                <label class="form-file-label" for="image">
+                    <span class="form-file-text custom-file-label">Upload files ['jpeg', 'png', 'jpg'] </span>
+                    <span class="form-file-button">Browse</span>
+                </label>
+            </div>
+        </div>
+  
+        <div class="row>
+            <p class="mt-3">Local contact for this submission:</p>
+            <div class="col">
+                <label class="form-label" for="tel">Tel</label>
+                <input class="form-control" type="text id="tel" name="tel" required>
+            </div>
+            <div class="col">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" type="email" id="email" name="email" required>
+            </div>
+        </div>
+        
+        <div class="mb-3 mt-3">
+            <label class="form-label" for="remarks">Remarks</label>
+            <textarea class="form-control" type="text" id="remarks" name="expression[remarks]"></textarea>
+        </div>
+
+        <hr style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
+        <br>  
+
+
+        <button class="btn btn-primary">Add Expression</button>
+    </form>
+
+    <br>
+    <P>Note: When the submission is accepted the supplier will be short listed for participarting in RFQs issued by our Service Providers</P>
+
+<br>
+</div>
+</div>

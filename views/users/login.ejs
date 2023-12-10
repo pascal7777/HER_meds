@@ -1,0 +1,45 @@
+<% layout('layouts/boilerplate')%>
+
+
+
+<div class="container d-flex justify-content-center align-items-center mt-5"></div>
+
+<div class="row">
+    <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+        <div class="card shadow">
+            <img src="https://media.istockphoto.com/id/1300036753/photo/falling-antibiotics-healthcare-background.jpg?s=612x612&w=0&k=20&c=oquxJiLqE33ePw2qML9UtKJgyYUqjkLFwxT84Pr-WPk="
+                alt="" class="card-img-top" />
+            <div class="card-body">
+
+
+                <h5 class="card-title">Login</h5>
+
+
+                <form action="/login" method="POST" class="validated-form" novalidate>
+                <div class="mb-3">
+                    <label class="form-label" for="username">Username</label>
+                    <input class="form-control" type="text" id="username" name="username" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="password">Password</label>
+                    <input class="form-control" type="password" id="password" name="password" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <button class="btn btn-success">Login</button>
+                </form>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<br>
+<hr>
+<a style="color:rgb(1, 61, 242)"href="/register">Register</a>
