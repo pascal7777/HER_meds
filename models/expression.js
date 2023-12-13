@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Product = require('./product');
 const Comment = require('./comment');
 const Evaluation= require('./evaluation');
+const { boolean } = require('joi');
 const { Schema } = mongoose;
 
 
@@ -46,6 +47,9 @@ const expressionSchema = new Schema({
     packaging: {
         type: String
     },
+   current_other: {
+        type: String
+    },
     hosp_packaging: {
         type: String
     },
@@ -53,6 +57,33 @@ const expressionSchema = new Schema({
         type: Number
     },
     storage: {
+        type: String
+    },
+    gmp: {
+        type: String
+    },
+    api: {
+        type: String
+    },
+    stab: {
+        type: String
+    },
+    ster: {
+        type: String
+    },
+    be: {
+        type: String
+    },
+    packSpec: {
+        type: String
+    },
+    fpSpec: {
+        type: String
+    },
+    labelImage: {
+        type: String
+    },
+    leadTime: {
         type: String
     },
     remarks: {
