@@ -10,7 +10,7 @@
 
        <div class="mb-3">
         <label class="form-label" for="inn">INN Name(s)</label>
-        <input class="form-control" type="text" id="inn" name="product[inn]" value="<%=product.inn%>"required>
+        <input class="form-control" list="innlist" type="text" id="inn" name="product[inn]" value="<%=product.inn%>"required>
         <datalist id="innlist">
             <option value="Acetaminophen (Paracetamol)">
                 <option value="Acetyl Salicylic Acid (Aspirin)">
@@ -121,7 +121,7 @@
                 <option value="Tablet scored">
                 <option value="Tablet coated">
                 <option value="Tablet dispersible">
-                    <option value="Tablet chewable"></option>
+                <option value="Tablet chewable"></option>
                 <option value="Tablet fixed dose combination">
                 <option value="Tablet (co-pack)">
                 <option value="Tablet vaginal (pessary)">
@@ -161,10 +161,9 @@
         <input class="form-control" type="text" id="hosp_packaging" name="product[hosp_packaging]" value="<%=product.hosp_packaging%>">
     </div>
 
-
     <div class="mb-3">
         <label class="form-label" for="shelflife" class="form-label">Minimum Shelflife at delivery (m)</label>
-        <input class="form-control" type="number" id="shelflife" name="product[shelflife]" value="<%=product.shelflife%>">
+        <input class="form-control" list="mors" name="product[shelflife]" id="shelflife" value="<%=product.shelflife%>"
             required>
         <datalist id="mors">
                 <option value=12>
