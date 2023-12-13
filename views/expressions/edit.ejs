@@ -1,27 +1,30 @@
 <% layout('layouts/boilerplate')%>
     
 
-
 <div class="row">
  
-   
-    <h1 class="text-center">Edit Expression</h1> 
-    <div class="col-6 offset-3">
-    <p>for: <%=expression.product.inn%>-<%=expression.product.formulation%> </p>
-   
-
-        <form action="/expressions/<%=expression._id%>?_method=PUT" method="POST" novalidate class = "validated-form" enctype="multipart/form-data">
+        <h1 class="text-center">Edit Expression</h1>
+      
+          
+        <h2 class="text-center">for: <%=expression.product.inn%>-<%=expression.product.formulation%></h2>
         
+  
+
+<div class="col-6 offset-3">
+
+<form action="/expressions/<%=expression._id%>?_method=PUT" method="POST" novalidate class = "validated-form" enctype="multipart/form-data">
+    <br>
         <div class="mb-3">
             <label class="form-label" for="company">Supplier</label>
             <input class="form-control" type="text" id="company" name="expression[company]" value="<%=expression.company%>" required>
-        </div>       
+        </div>  
+
         <div class="mb-3">
         <label class="form-label" for="manufacturer">Manufacturer</label>
         <input class="form-control" type="text" id="manufacturer" name="expression[manufacturer]" value="<%=expression.manufacturer%>">
-         </div>  
+        </div>  
        
-         <div class="mb-4">
+        <div class="mb-4">
             <label class="form-label" for="mf_country">Country of Manufacturing</label>
             <input class="form-control" list="country" id="mf_country" name="expression[mf_country]" value="<%=expression.mf_country%>">
             <datalist id="country">
@@ -36,19 +39,7 @@
                     <option value="Other">
             </datalist>
         </div>
-
-        <div class="mb-4">
-            <label class="form-label" for="afda" class="form-label">AFDA (MOH) Status</label>
-            <input class="form-control" list="afdayn" id="afda" name="expression[afda]"  value="<%=expression.afda%>">
-            <datalist id="afdayn">
-                <option value="Yes">
-                <option value="No"> 
-                <option value="To be confirmed">                      
-            </datalist>
-        </div>
-
-
-       
+   
         <div class="mb-3">
             <label class="form-label" for="formulation" class="form-label">Dosage form</label>
             <input class="form-control" list="formulations" id="formulation" name="expression[formulation]" value="<%=expression.formulation%>" required>
@@ -79,19 +70,30 @@
                     <option value="Suppositories (rectal)">
                     <option value="Other">
                 </datalist>
-                <br>
+        </div>
+            
+        <div class="mb-4">
+                    <label class="form-label" for="afda" class="form-label">AFDA (MOH) Status</label>
+                    <input class="form-control" list="afdayn" id="afda" name="expression[afda]"  value="<%=expression.afda%>">
+                    <datalist id="afdayn">
+                        <option value="Yes">
+                        <option value="No"> 
+                        <option value="To be confirmed">                      
+                    </datalist>
+        </div>
 
-<div class="row">
-    <div class="col">
-        <label class="form-label" for="strength">Strength</label>
-        <input class="form-control" type="text" id="strength" name="expression[strength]" value="<%=expression.strength%>"required>
-    </div>
-    <div class="col">
-        <label class="form-label"  for="unit">Unit</label>
-        <input class="form-control" type="text" id="unit" name="expression[unit]" value="<%=expression.unit%>"required>
-    </div>
-  </div>   
-  <br>  
+        <div class="row">
+            <div class="col">
+            <label class="form-label" for="strength">Strength</label>
+            <input class="form-control" type="text" id="strength" name="expression[strength]" value="<%=expression.strength%>"required>
+        </div>
+
+         <div class="col">
+            <label class="form-label"  for="unit">Unit</label>
+            <input class="form-control" type="text" id="unit" name="expression[unit]" value="<%=expression.unit%>"required>
+        </div>
+        </div>              
+
         <div class="mb-3">
             <label class="form-label" for="standard" class="form-label">Finished Product Specification</label>
             <input class="form-control" list="standards" name="expression[standard]" id="standard" value="<%=expression.standard%>" required>
@@ -105,21 +107,22 @@
                     <option value="In House (INH)">
                     <option value="Other">
                 </datalist>
-<br>
+        </div>   
 
-<div class="mb-3">
-    <label class="form-label" for="packSize">Packsize</label>
-    <input class="form-control" type="number" id="packSize" name="expression[packSize]" value="<%=expression.packSize%>" required>
-</div>
-<div class="mb-3">
+        <div class="mb-3">
     <label class="form-label" for="packaging">Primary packaging</label>
     <input class="form-control" type="text" id="packaging" name="expression[packaging]" value="<%=expression.packaging%>" required>
-</div>
-<div class="mb-3">
-    <label class="form-label" for="hosp_packaging">Hospital pack</label>
-    <input class="form-control" type="text" id="hosp_packaging" name="expression[hosp_packaging]" value="<%=expression.hosp_packaging%>" required>
-</div>
+        </div>
 
+        <div class="mb-3">
+            <label class="form-label" for="packSize">Packsize</label>
+            <input class="form-control" type="number" id="packSize" name="expression[packSize]" value="<%=expression.packSize%>" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="hosp_packaging">Hospital pack</label>
+            <input class="form-control" type="text" id="hosp_packaging" name="expression[hosp_packaging]" value="<%=expression.hosp_packaging%>" required>
+        </div>
 
         <div class="mb-3">
             <label class="form-label" for="shelflife">Shelflife claim</label>
@@ -139,59 +142,142 @@
                 <option value="Store in Ulralow Freezer (<70C)">                         
                 <option value="not provided"> 
             </datalist>
-
-<br>
-
-    <hr style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
-    
- 
-    <div class="mb-3">
-                <label class="form-label" for="current_other">Registered and marketed in (other) countries:</label>
-                <input class="form-control" type="text" id="current_other" name="expression[current_other]" value="<%=expression.current_other%>">
-    </div>
-
-        <hr style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
-        
-        
-        <div class="row">
-            <p class="mt-3">Contact for this submission:</p>
-            <div class="col">
-                <label class="form-label" for="tel">Tel</label>
-                <input class="form-control" type="text id="tel" name="expression[tel]" value="<%=expression.tel%>" required>
-            </div>
-            <div class="col">
-                <label class="form-label" for="email">Email</label>
-                <input class="form-control" type="email" id="email" name="expression[email]" value="<%=expression.email%>" required>
-            </div>
         </div>
 
+                                <hr style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
+ 
+        <div class="mb-3">
+        <label class="form-label" for="current_other">Registered and marketed in (other) countries:</label>
+        <input class="form-control" type="text" id="current_other" name="expression[current_other]" value="<%=expression.current_other%>">
+        </div>
 
+                                <hr style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
+   
+        <div class="mb-4">
+            <label class="form-label" for="afda" class="form-label">The product we offer, is registered, authorized or otherwise cleared for import and use in Afghanistan, by the AFDA (MOH)
+            </label>
+            <input class="form-control" list="afdayn" name="afda" id="afda" name="expression[afda]" value="<%=expression.afda%>" 
+                required>
+            <datalist id="afdayn">
+                <option value="Yes">
+                <option value="No"> 
+                <option value="To be confirmed">                      
+            </datalist>
+        </div>
+    
+        <div class="mb-4">
+                <label class="form-label" for="leadTime" class="form-label">Leadtime for this product</label>
+                <input class="form-control" list="lead" name="leadTime" id="leadTime" name="expression[leadTime]" value="<%=expression.leadTime%>" 
+                    required>
+                <datalist id="lead">
+                    <option value="within 1 month (from stock)">
+                        <option value="from 1 to 3 months"></option>
+                    <option value="at least 3 months (to be imported)"> 
+                    <option value="to be confirmed">                      
+                </datalist>
+        </div>
+        
+        <div class="row mb-3">
+                <p>Which documentation listed below can be submitted for our review?</p>
+                <div class="col-sm">  
+                            <label class="form-label" for="gmp" class="form-label"><span style="font-size: 0.8em"> Valid GMP Certificate: </span> </label>
+                            <input class="form-control" list="yn" name="expression[gmp]" id="gmp" value="<%=expression.gmp%>"  required>
+                            <datalist id="yn">
+                                <option value="Yes">
+                                <option value="No"> 
+                                <option value="Not applicable"> 
+                                <option value="To be confirmed">                      
+                            </datalist>
+                </div>
+                <div class="col-sm">
+                            <span style="font-size: 0.8em"> 
+                            <label class="form-label" for="api" class="form-label">API Source(s)</label></span> 
+                            <input class="form-control" list="yn1" id="api" name="expression[api]" value="<%=expression.api%>"required>
+                </div>
+                <div class="col-sm">
+                            <span style="font-size: 0.8em"> 
+                            <label class="form-label" for="stab" class="form-label">Stability data</label></span> 
+                            <input class="form-control" list="yn" id="stab" name="expression[stab]" value="<%=expression.stab%>" required>
+                </div>
+                <div class="col-sm">
+                            <span style="font-size: 0.8em"> 
+                            <label class="form-label" for="ster" class="form-label">Sterilization process</label></span> 
+                            <input class="form-control" list="yn" id="ster" name="expression[ster]" value="<%=expression.ster%>" required>
+                </div>
+        </div>
+    
+        <div class="row mb-3">
+                <div class="col-sm">
+                    <span style="font-size: 0.8em"> 
+                    <label class="form-label" for="be" class="form-label">Interchangeability (oral solids)</label></span> 
+                    <input class="form-control" list="yn" id="be" name="expression[be]" value="<%=expression.be%>" required>      
+                </div>
+                <div class="col-sm">
+                    <span style="font-size: 0.8em"> 
+                    <label class="form-label" for="packSpec" class="form-label">Packaging specification</label></span> 
+                    <input class="form-control" list="yn"  id="packSpec" name="expression[packSpec]" value="<%=expression.packSpec%>" required>
+                </div>
+                <div class="col-sm">
+                    <span style="font-size: 0.8em"> 
+                    <label class="form-label" for="fpSpec" class="form-label">Finished product specification</label></span> 
+                    <input class="form-control" list="yn" id="fpSpec" name="expression[fpSpec]" value="<%=expression.fpSpec%>" required>
+                </div>
+                <div class="col-sm">
+                    <span style="font-size: 0.8em"> 
+                    <label class="form-label" for="labelImage" class="form-label">Image of product labeling</label></span> 
+                    <input class="form-control" list="yn" id="labelImage" name="expression[labelImage]" value="<%=expression.labelImage%>" required>
+                </div>
+        </div>
 
-        <hr style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
+                                <hr style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
+
+        <div class="row">
 
         <div class="mb-3">
             <label>Upload more images</label>
-          <div class="form-file custom-file">
-              <input type="file" class="form-file-input" id="image" name="image" multiple>
-              <label class="form-file-label" for="image">
-                  <span class="form-file-text custom-file-label">Select Product image(s)...</span>
-                  <span class="form-file-button">Browse</span>
-              </label>
-          </div>
-      </div>
-
-      <div class="mb-3">
-        <% expression.images.forEach(function(img, i) { %>
-        <img src="<%=img.thumbnail%>" class="img-thumbnail" alt="">
-        <div class="form-check-inline">
-            <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+            <div class="form-file custom-file">
+                <input type="file" class="form-file-input" id="image" name="image" multiple>
+                <label class="form-file-label" for="image">
+                <span class="form-file-text custom-file-label">Select Product image(s)...</span>
+                <span class="form-file-button">Browse</span>
+                </label>
+            </div>
         </div>
-        <label for="image-<%=i%>">Delete?</label>
-        <% })%>
-      </div>
 
-<br>
-<div class="mb-3">
+        <div class="mb-3">
+            <% expression.images.forEach(function(img, i) { %>
+            <img src="<%=img.thumbnail%>" class="img-thumbnail" alt="">
+            <div class="form-check-inline">
+                <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+            </div>
+            <label for="image-<%=i%>">Delete?</label>
+            <% })%>
+            </div>
+
+        <p class="mt-3">Update Contact for this submission:</p>
+        
+        <div class="col">
+                <label class="form-label" for="tel">Tel</label>
+                <input class="form-control" type="text id="tel" name="expression[tel]" value="<%=expression.tel%>" required>
+        </div>
+
+        <div class="col">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" type="email" id="email" name="expression[email]" value="<%=expression.email%>" required>
+        </div>
+    
+                                                        <br>
+
+        <hr style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
+
+        
+
+                                                        <br>
+        <div class="mb-3">
         <button class="btn btn-primary">Update Expression</button>
-    </div>
-    </form>
+        </div>
+</form>
+
+
+</div>
+</div>
