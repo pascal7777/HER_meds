@@ -101,13 +101,12 @@
                             <%  if( currentUser && expression.author.equals(currentUser._id) || currentUser &&
                             currentUser.isAdmin || currentUser &&
                         currentUser.isQA)  {%>
-                            <h3 style="font-size: 0.8em">   <li> <a href="/expressions/<%=expression._id%>">
-                                <%=expression.company%> - <%=expression.mf_country%></a> <br>Date: <%=expression.createdAt.toDateString()%>
+                            <li><span style="font-size: 0.8em"> <a href="/expressions/<%=expression._id%>">
+                                 <%=expression.company%> - <%=expression.mf_country%></a> <br>Date: <%=expression.createdAt.toDateString()%></span> 
                             </li>
                             <% } else{ %>
-                            <li>    
-                                <%=expression.company%> - <%=expression.mf_country%> on: <%=expression.createdAt.toDateString()%>
-                            </li></span>
+                            <li><span style="font-size: 0.8em"> <%=expression.company%> - <%=expression.mf_country%> on: <%=expression.createdAt.toDateString()%></span> 
+                            </li>
                             <% } %>
                     <% } %>
                     </ul>
