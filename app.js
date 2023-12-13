@@ -134,8 +134,8 @@ app.get('/products/:id/expressions/new', isLoggedIn, catchAsync(async (req,res) 
 app.post('/products/:id/expressions/',   upload.array('image'), isLoggedIn, catchAsync(async(req,res) => {
     const { id } = req.params;
     const product = await Product.findById(id);
-    const { company, manufacturer, mf_country, afda, formulation, strength, unit, standard, packaging, hosp_packaging, packSize, shelflife, storage, image, remarks, tel, email, status, current_other} = req.body;
-    const expression = new Expression ({company, manufacturer, mf_country, afda, formulation, strength, unit, standard, packaging, hosp_packaging, packSize, shelflife, storage, image, remarks, tel, email, status, current_other});
+    const { company, manufacturer, mf_country, afda, formulation, strength, unit, standard, packaging, hosp_packaging, packSize, shelflife, storage, image, remarks, tel, email, status, current_other, gmp, api, stab, ster, be, packSpec, fpSpec, labelImage, leadTime } = req.body;
+    const expression = new Expression ({company, manufacturer, mf_country, afda, formulation, strength, unit, standard, packaging, hosp_packaging, packSize, shelflife, storage, image, remarks, tel, email, status, current_other, gmp, api, stab, ster, be, packSpec, fpSpec, labelImage, leadTime });
     product.expressions.push(expression);
     expression.product = product;
     expression.images =  req.files.map(f => ({url: f.path, filename: f.filename }))
