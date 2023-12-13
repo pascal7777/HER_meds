@@ -8,6 +8,8 @@
     <h2 class="text-center"><%= product.inn%> - <%= product.formulation %></h2>
     
 <div class="col-6 offset-3">
+    
+    
     <form action="/products/<%=product._id%>/expressions" method="POST" novalidate class = "validated-form" enctype="multipart/form-data">
        
         <div class="mb-3">
@@ -26,7 +28,7 @@
 
         <div class="mb-4">
             <label class="form-label" for="mf_country">Country of Manufacturing</label>
-            <input class="form-control" list="country" name="mf_country" id="mf_country" placeholder="Type to search..."
+            <input class="form-control" list="country" name="mf_country" id="mf_country"
                     required>
             <datalist id="country">
                     <option value="Afghanistan">
@@ -41,27 +43,13 @@
             </datalist>
         </div>
 
-
-        <div class="mb-4">
-            <label class="form-label" for="afda" class="form-label">The product we offer, is registered, authorized or otherwise cleared for use in Afghanistan, by the AFDA (MOH)
-                <span style="color:rgb(162, 164, 165)"><p style="font-size: 12px" class="mb-1"><em>Supporting document from AFDA will be required as well as certificates of analysis from the manufacturer of product batches imported or distributed in the past 12 months</em></p></span>
-            </label>
-            <input class="form-control" list="afdayn" name="afda" id="afda" placeholder="Y/N..."
-                required>
-            <datalist id="afdayn">
-                <option value="Yes">
-                <option value="No"> 
-                <option value="To be confirmed">                      
-            </datalist>
-        </div>
-
-
         <hr class="mb-3" style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
         
         <P>Submit the details of the product offered below</P>
+
          <div class="mb-3">
                 <label class="form-label" for="formulation" class="form-label">Dosageform</label>
-                <input class="form-control" list="formulations"name="formulation" id="formulation" placeholder="Type to search..."
+                <input class="form-control" list="formulations"name="formulation" id="formulation"
                     required>
                 <datalist id="formulations">
                     <option value="Tablet plain">
@@ -107,7 +95,7 @@
                         <label class="form-label" for="standard" class="form-label">Finished Product Specification
                             <span style="color:rgb(162, 164, 165)"><p style="font-size: 12px" class="mb-1"><em>As per product label</em></p></span>
                         </label>
-                        <input class="form-control" list="standards"name="standard" id="standard" placeholder="Type to search..."
+                        <input class="form-control" list="standards"name="standard" id="standard"
                             required>
                         <datalist id="standards">
                                 <option value="USP">
@@ -120,20 +108,22 @@
                                 <option value="Other">
                             </datalist>
         </div>    
-        
-        <div class="mb-3">
-            <label class="form-label" for="packSize">Packsize</label>
-            <input class="form-control" type="number" id="packSize" name="packSize" required>
-        </div>
 
         <div class="mb-3">
             <label class="form-label" for="packaging">Primary packaging</label>
             <input class="form-control" type="text" id="packaging" name="packaging" required>
         </div>
 
-        <div class="mb-3">
+        <div class="row mb-3">
+            <div class="col">
+            <label class="form-label" for="packSize">Packsize</label>
+            <input class="form-control" type="number" id="packSize" name="packSize" required>
+             </div>
+     
+            <div class="col">
             <label class="form-label" for="hosp_packaging">Hospital pack</label>
             <input class="form-control" type="text" id="hosp_packaging" name="hosp_packaging" required>
+            </div>
         </div>
 
         <div class="mb-3">
@@ -141,12 +131,11 @@
             <input class="form-control" type="number" id="shelflife" name="shelflife" required>
         </div>
 
-      
         <div class="mb-3">
             <label class="form-label" for="storage" class="form-label">Storage conditions
                 <span style="color:rgb(162, 164, 165)"><p style="font-size: 12px" class="mb-1"><em>As per product label</em></p></span>
             </label>
-            <input class="form-control" list="conditions" name="storage" id="storage" placeholder="Type to search..."
+            <input class="form-control" list="conditions" name="storage" id="storage"
                 required>
             <datalist id="conditions">
                 <option value="Store in a dry place, below 25C">
@@ -166,7 +155,89 @@
         </div>
 
    
-        <hr style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
+                            <hr style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
+
+        <div class="mb-4">
+        <label class="form-label" for="afda" class="form-label">The product we offer, is registered, authorized or otherwise cleared for import and use in Afghanistan, by the AFDA (MOH)
+            <span style="color:rgb(162, 164, 165)"><p style="font-size: 12px" class="mb-1"><em>Supporting document from AFDA will be required as well as certificates of analysis from the manufacturer of product batches imported or distributed in the past 12 months</em></p></span>
+        </label>
+        <input class="form-control" list="afdayn" name="afda" id="afda"
+            required>
+        <datalist id="afdayn">
+            <option value="Yes">
+            <option value="No"> 
+            <option value="To be confirmed">                      
+        </datalist>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label" for="leadTime" class="form-label">Leadtime for this product</label>
+            <input class="form-control" list="lead" name="leadTime" id="leadTime"
+                required>
+            <datalist id="lead">
+                <option value="within 1 month (from stock)">
+                    <option value="from 1 to 3 months"></option>
+                <option value="at least 3 months (to be imported)"> 
+                <option value="to be confirmed">                      
+            </datalist>
+        </div>
+    
+        <div class="row mb-3">
+            <p>Which documentation listed below can be submitted for our review?</p>
+            <div class="col-sm">  <span style="font-size: 0.8em"> 
+                <label class="form-label" for="afda" class="form-label">Valid GMP Certificate</label></span> 
+                <input class="form-control" list="yn" name="gmp" id="gmp"required>
+                <datalist id="yn">
+                    <option value="Yes">
+                    <option value="No"> 
+                    <option value="Not applicable"> 
+                    <option value="To be confirmed">                      
+                </datalist>
+        </div>
+
+        <div class="col-sm">
+                <span style="font-size: 0.8em"> 
+                <label class="form-label" for="api" class="form-label">API Source(s)</label></span> 
+                <input class="form-control" list="yn" name="api" id="api"required>
+            </div>
+            <div class="col-sm">
+                <span style="font-size: 0.8em"> 
+                <label class="form-label" for="stab" class="form-label">Stability data</label></span> 
+                <input class="form-control" list="yn" name="stab" id="stab"required>
+            </div>
+            <div class="col-sm">
+                <span style="font-size: 0.8em"> 
+                <label class="form-label" for="ster" class="form-label">Sterilization process</label></span> 
+                <input class="form-control" list="yn" name="ster" id="ster"required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm">
+                <span style="font-size: 0.8em"> 
+                <label class="form-label" for="be" class="form-label">Interchangeability (oral solids)</label></span> 
+                <input class="form-control" list="yn" name="be" id="be"required>      
+            </div>
+            <div class="col-sm">
+                <span style="font-size: 0.8em"> 
+                <label class="form-label" for="packSpec" class="form-label">Packaging specification</label></span> 
+                <input class="form-control" list="yn" name="packSpec" id="packSpec"required>
+            </div>
+            <div class="col-sm">
+                <span style="font-size: 0.8em"> 
+                <label class="form-label" for="fpSpec" class="form-label">Finished product specification</label></span> 
+                <input class="form-control" list="yn" name="fpSpec" id="fpSpec"required>
+            </div>
+            <div class="col-sm">
+                <span style="font-size: 0.8em"> 
+                <label class="form-label" for="labelImage" class="form-label">Image of product labeling</label></span> 
+                <input class="form-control" list="yn" name="labelImage" id="labelImage"required>
+            </div>
+  
+        </div>
+
+    
+                            <hr class="mb-3" style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
 
         <div class="mb-3">
               <label>Upload Images and documentation
@@ -181,8 +252,13 @@
             </div>
         </div>
   
-        <div class="row>
-            <p class="mt-3">Local contact for this submission:</p>
+                            <hr class="mb-3" style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
+        
+        
+            <p>Supplier contact details for this submission
+            </p>
+
+        <div class="row mb-3">
             <div class="col">
                 <label class="form-label" for="tel">Tel</label>
                 <input class="form-control" type="text id="tel" name="tel" required>
@@ -194,20 +270,24 @@
         </div>
         
         <div class="mb-3 mt-3">
-            <label class="form-label" for="remarks">Remarks</label>
+            <label class="form-label" for="remarks">Remarks, if any</label>
             <textarea class="form-control" type="text" id="remarks" name="expression[remarks]"></textarea>
         </div>
 
-        <hr style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
-        <br>  
+                        <hr style="height:5px; border: 1px dashed rgb(6, 91, 251);background-color:gray">
+                                                                <br>  
 
+
+
+        
 
         <button class="btn btn-primary">Add Expression</button>
     </form>
 
     <br>
-    <P>Note: When the submission is accepted the supplier will be short listed for participarting in RFQs issued by our Service Providers</P>
+    <p>Note: When the submission is complete and accepted by us, your company as supplier will be short listed for participarting in RFQs issued by our Service Providers</p>
+    <p>In case requirements are not clear, add yr questions in the remark box so we can help you to address them. A supplier can update information at later stage in case one or more details require more time</p>
 
-<br>
+
 </div>
 </div>

@@ -4,24 +4,24 @@
     <div class="col-sm-9">
         <div class="card">
             <div class="card-body">
-                <h2 style="font-size: 2vw">Company: <%= expression.company%></h2>
-                <h4 style="font-size: 2vw">Product: <a href="/products/<%=expression.product._id%>"><%=expression.product.inn%> <%=expression.product.strength%> <%=expression.product.unit%></a></h4>
+                <h2 style="font-size: 1.2em">Company: <%= expression.company%></h2>
+                <h4 style="font-size: 1.2em">Product: <a href="/products/<%=expression.product._id%>"><%=expression.product.inn%> <%=expression.product.strength%> <%=expression.product.unit%></a></h4>
             
             
             <div class="row">
-                <div class="col-sm-6" style=" line-height:1.1">
-                        <span style="color:rgb(119, 119, 121); font-size: 1vw"> Submitted:<%= expression.author.username%> (<%= expression.author.company%>)
-                        <br><em>On: <%= expression.createdAt.toDateString()%></em>
+                <div class="col-sm-6 style=" line-height:1.1">
+                        <span style="color:rgb(119, 119, 121); font-size: 0.5em"> Submitted:<%= expression.author.username%> (<%= expression.author.company%>)
+                        <em>On: <%= expression.createdAt.toDateString()%></em>
                         <% if( (expression.createdAt - Date.now())/604800000 <= -1)      {%>
                             (<%= - Math.floor( (expression.createdAt - Date.now())/1209600000)%> week(s) ago)
                             <% } %> 
                         </span>
                 </div>     
-                <div class="col-sm-6" style=" line-height:1.1">   
+                <div class="col-sm-6 style=" line-height:1.1">   
                         <% if(expression.createdAt.toDateString() != expression.updatedAt.toDateString()) {%>
-                        <span style="color:rgb(119, 119, 121); font-size: 1vw"> Edited on:
+                        <span style="color:rgb(119, 119, 121); font-size: 0.5em"> Edited on:
                         <!-- <%= expression.editor.username%> (<%= expression.editor.company%>) -->
-                        <br><em><%= expression.updatedAt.toDateString()%></em>
+                        <em><%= expression.updatedAt.toDateString()%></em>
                         <% if( (expression.updatedAt - Date.now())/604800000 <= -1)      {%>
                             (<%= - Math.floor( (expression.updatedAt - Date.now())/1209600000)%> week(s) ago)
                              <% } %>  
@@ -39,9 +39,9 @@
     <div class="card">
     <div class="card-body">
                     
-                <h2 style="font-size: 1.5vw">EOI Status</h2> 
+                <h2 style="font-size: 1em">EOI Status</h2> 
                 
-                  <h5 style="font-size: 1.5vw"> 
+                <h5 style="font-size: 1em"> 
                       
                     <% if(expression.status==="ONLINE CHECK" ) {%>
                         <span style="color:rgb(8, 96, 249)">
@@ -60,22 +60,17 @@
                                     <%=expression.status %>
                                 </span>
                                 <% } %>
-                                            </h5> 
+                </h5> 
+
+                <%  if( currentUser && currentUser.isAdmin || currentUser && currentUser.isQA) {%>    
+                    <p class="mt-3"><a class="btn btn-warning btn-sm" href="/expressions/<%=expression._id%>/status" role="button">Change Status</a></p>         
+                    <% } %>
     </div>
     </div>
     </div>
     
 </div>   
     
-<div class="row">
-
-    <%  if( currentUser && currentUser.isAdmin || currentUser && currentUser.isQA) {%>
-
-    <div class="col-sm-12">            
-    <p class="mt-3"><a class="btn btn-warning btn-lg" href="/expressions/<%=expression._id%>/status" role="button">Change EOI Status</a></p>         
-    </div>
-      <% } %>
-</div>
 
 
 <br>
@@ -84,24 +79,24 @@
     <div class="col-sm-4">
             <div class="card">
               <div class="card-body">
-                <h5 style="font-size: 2vw">Manufacturer  </h5>
+                <h5 style="font-size: 1em">Manufacturer  </h5>
                 <ul>
                     <% if(expression.manufacturer != "" ) {%>
-                            <li><%= expression.manufacturer%>
+                        <span style= "font-size: 0.8em">       <li><%= expression.manufacturer%>
                             </li>
                             <li>   <%= expression.mf_country%>
-                            </li>
+                            </li> </span>
                         <% } %>
                 </ul>
               
                 
                     <hr>
-                    Contacts for this EOI:     
+                  <h5 style="font-size: 1em">  Contacts for this EOI:    </h5> 
                 <ul>    
-                    <li>Telephone: <%= expression.tel %> 
+                    <span style= "font-size: 0.8em">        <li>Telephone:<br> <%= expression.tel %> 
                     </li>
                     <li>Email: <%= expression.email %> 
-                    </li>
+                    </li> </span>
                 </ul>
                         
             </div>
@@ -112,110 +107,104 @@
         <div class="card">
             <div class="card-body">
                     
-                <h5 style="font-size: 2vw">Product Offered </h5>
+                <h5 style="font-size: 1em">Product Offered </h5>
                     
             <ul>
                 <li>
                 <% if(expression.product.formulation === expression.formulation) {%>
-                <span style="color:rgb(10, 10, 10)">
-                Formulation: <%=expression.formulation %> 
+                    <span style= "font-size: 0.8em">  Formulation: </span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                <%=expression.formulation %> 
                 </span>
                 <% } %>
                 <% if(expression.product.formulation != expression.formulation) {%>
-                <span style="color:rgb(249, 104, 8)">
-                Formulation: <%=expression.formulation %> 
+                    <span style= "font-size: 0.8em">    Formulation:</span><span style= "font-size: 0.8em; color:rgb(249, 104, 8)">
+                 <%=expression.formulation %> 
                 </span>
                 <% } %>
                 </li>
                 <li>
                 <% if(expression.product.strength  === expression.strength) {%>
-                <span style="color:rgb(10, 10, 10)">
-                Strength: <%=expression.strength %>  <%=expression.unit %> 
+                    <span style= "font-size: 0.8em">   Strength:</span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                 <%=expression.strength %>  <%=expression.unit %> 
                 </span>
                 <% } %>
                 <% if(expression.product.strength != expression.strength) {%>
-                <span style="color:rgb(249, 104, 8)">
-                Strength: <%=expression.strength %>  <%=expression.unit %> 
-                </span>
-                <% } %>
-                </li>
-                <li>
-                <% if(expression.product.standard === expression.standard) {%>
-                <span style="color:rgb(10, 10, 10)">
-                FP Specification: <%=expression.standard %> 
-                </span>
-                <% } %>
-                <% if(expression.product.standard != expression.standard) {%>
-                <span style="color:rgb(249, 104, 8)">
-                FP Specification: <%=expression.standard%> 
+                    <span style= "font-size: 0.8em">     Strength:</span><span style= "font-size: 0.8em; color:rgb(249, 104, 8)">
+                 <%=expression.strength %>  <%=expression.unit %> 
                 </span>
                 <% } %>
                 </li>
                 <li>
                 <% if(expression.product.packSize === expression.packSize) {%>
-                <span style="color:rgb(10, 10, 10)">
-                Pack size (units): <%= expression.packSize%> 
+                    <span style= "font-size: 0.8em">    Pack size (units):</span> <span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+               <%= expression.packSize%> 
                 </span>
                 <% } %>
                 <% if(expression.product.packSize != expression.packSize) {%>
-                <span style="color:rgb(249, 104, 8)">
-                Pack size: <%= expression.packSize%> 
+                    <span style= "font-size: 0.8em">    Pack size (units):</span><span style= "font-size: 0.8em; color:rgb(249, 104, 8)">
+                 <%= expression.packSize%> 
                 </span>
                 <% } %>
                 </li>
                 <li>
                 <% if(expression.product.packaging === expression.packaging) {%>
-                <span style="color:rgb(10, 10, 10)">
-                Primary packaging: <%= expression.packaging%> 
+                    <span style= "font-size: 0.8em">   Primary packaging: </span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                 <%= expression.packaging%> 
                 </span>
                 <% } %>
                 <% if(expression.product.packaging != expression.packaging) {%>
-                <span style="color:rgb(249, 104, 8)">
-                Primary packaging: <%= expression.packaging%> 
+                    <span style= "font-size: 0.8em">    Primary packaging:</span><span style= "font-size: 0.8em; color:rgb(249, 104, 8)">
+                 <%= expression.packaging%> 
                 </span>
                 <% } %>
                 </li>
                 <li>
                 <% if(expression.product.hosp_packaging === expression.hosp_packaging ) {%>
-                <span style="color:rgb(10, 10, 10)">
-                Hospital pack: <%= expression.hosp_packaging %> 
+                    <span style= "font-size: 0.8em">   Hospital pack: </span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+               <%= expression.hosp_packaging %> 
                 </span>
                  <% } %>
                 <% if(expression.product.hosp_packaging  != expression.hosp_packaging ) {%>
-                <span style="color:rgb(249, 104, 8)">
-                Hospital pack: <%= expression.hosp_packaging %> 
+                    <span style= "font-size: 0.8em">   Hospital pack:</span><span style= "font-size: 0.8em; color:rgb(249, 104, 8)">
+                <%= expression.hosp_packaging %> 
                 </span>
                 <% } %>
                 </li>
                 <li>
                 <% if(expression.product.shelflife === expression.shelflife) {%>
-                <span style="color:rgb(10, 10, 10)">
-                Shelflife (m): <%= expression.shelflife%> 
+                    <span style= "font-size: 0.8em">     Shelflife (m): </span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+           <%= expression.shelflife%> 
                 </span>
                 <% } %>
                 <% if(expression.product.shelflife != expression.shelflife) {%>
-                <span style="color:rgb(249, 104, 8)">
-                Shelflife (m): <%= expression.shelflife%> 
+                    <span style= "font-size: 0.8em">    Shelflife (m): </span> <span style= "font-size: 0.8em; color:rgb(249, 104, 8)">
+                <%= expression.shelflife%> 
                 </span>
                 <% } %>
                 </li>
                 
                 <hr>
 
-            
                 <li>
-                Recommended storage conditions:<br><em><%= expression.storage%></em>
+                    <span style= "font-size: 0.8em">  Finished Product Spec: <em><%= expression.standard%></em> </span>
                 </li>
                 <li>
-                Marketed in other countries:<br><em><%= expression.current_other%></em>
+                    <span style= "font-size: 0.8em">  Recommended storage conditions: <em><%= expression.storage%></em> </span>
+                </li>
+                <li>
+                    <% if(expression.current_other === "") {%>
+                    <span style= "font-size: 0.8em"> Marketed in other countries: </span><span style= "font-size: 0.8em; color:rgb(249, 104, 8)"><em> None</em> </span>
+                    <% } else{ %>
+                        <span style= "font-size: 0.8em"> Marketed in other countries: <em><%= expression.current_other%></em> </span>
+                        <% } %>
                 </li>
                 <li>
                 <% if(expression.afda === "Yes") {%>
-                    AFDA clearance: 
-                    <span style="color:rgba(11, 136, 5, 0.935)"><em><%= expression.afda%></em></span>
+                    <span style= "font-size: 0.8em">   AFDA clearance: </span>
+                    <span style=  "font-size: 0.8em; color:rgba(5, 58, 193, 0.935)"><em><%= expression.afda%></em></span>
                 <% } else{ %>
-                    AFDA clearance:
-                    <span style="color:rgb(34, 9, 223)"><em><%= expression.afda%></em></span>
+                    <span style= "font-size: 0.8em">   AFDA clearance: </span>
+                    <span style=  "font-size: 0.8em; color:rgb(249, 104, 8)"><em><%= expression.afda%></em></span>
                 <% } %>
                 </li>
              </ul>   
@@ -223,7 +212,7 @@
             <hr>
 
 
-            <h5 style="font-size: 2vw">  Supporting Docs:</h5>
+            <h5 style="font-size: 1em">  Supporting Docs:</h5>
           
                
             <div id="expressionCarousel" class="carousel slide" data-ride="carousel">
@@ -255,17 +244,17 @@
         <div class="card">
             <div class="card-body">
                 
-            <h5 style="font-size: 2vw">Product Requested </h5>
+            <h5 style="font-size: 1em">Product Requested </h5>
                 
             <ul>
                 <li>
                 <% if(expression.product.formulation === expression.formulation) {%>
-                <span style="color:rgb(10, 10, 10)">
-                Formulation: <%=expression.product.formulation %> 
+                    <span style= "font-size: 0.8em">      Formulation: </span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                <%=expression.product.formulation %> 
                 </span>
                 <% } %>
                 <% if(expression.product.formulation != expression.formulation) {%>
-                <span style="color:rgb(249, 104, 8)">
+                    <span style= "font-size: 0.8em">     Formulation:</span> <span style= "font-size: 0.8em; color:rgb(249, 104, 8)">
                 Formulation: <%=expression.product.formulation %> 
                 </span>
                 <% } %>
@@ -273,81 +262,79 @@
                 
                 <li>
                 <% if(expression.product.strength  === expression.strength) {%>
-                <span style="color:rgb(10, 10, 10)">
-                Strength: <%=expression.product.strength %>  <%=expression.product.unit %> 
+                    <span style= "font-size: 0.8em">      Strength:</span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                 <%=expression.product.strength %>  <%=expression.product.unit %> 
                 </span>
                 <% } %>
                 <% if(expression.product.strength != expression.strength) {%>
-                <span style="color:rgb(249, 104, 8)">
-                Strength: <%=expression.product.strength %>  <%=expression.product.unit %> 
-                </span>
-                <% } %>
-                </li>
-                
-                <li>
-                <% if(expression.product.standard === expression.standard) {%>
-                <span style="color:rgb(10, 10, 10)">
-                FP Specification: <%=expression.product.standard %> 
-                </span>
-                <% } %>
-                <% if(expression.product.standard != expression.standard) {%>
-                <span style="color:rgb(249, 104, 8)">
-                FP Specification: <%=expression.product.standard%> 
+                    <span style= "font-size: 0.8em">      Strength:</span><span style= "font-size: 0.8em; color:rgb(249, 104, 8)">
+               <%=expression.product.strength %>  <%=expression.product.unit %> 
                 </span>
                 <% } %>
                 </li>
 
                 <li>
                 <% if(expression.product.packSize === expression.packSize) {%>
-                <span style="color:rgb(10, 10, 10)">
-                Pack size (units): <%= expression.product.packSize%> 
+                    <span style= "font-size: 0.8em">     Pack size (units): </span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                <%= expression.product.packSize%> 
                 </span>
                 <% } %>
                 <% if(expression.product.packSize != expression.packSize) {%>
-                <span style="color:rgb(249, 104, 8)">
-                Pack size: <%= expression.product.packSize%> 
+                    <span style= "font-size: 0.8em">      Pack size (units): </span><span style= "font-size: 0.8em; color:rgb(249, 104, 8)">
+               <%= expression.product.packSize%> 
                 </span>
                 <% } %>
                 </li>
 
                 <li>
                 <% if(expression.product.packaging === expression.packaging) {%>
-                <span style="color:rgb(10, 10, 10)">
-                Primary packaging: <%= expression.product.packaging%> 
+                    <span style= "font-size: 0.8em">       Primary packaging:</span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                 <%= expression.product.packaging%> 
                 </span>
                 <% } %>
                 <% if(expression.product.packaging != expression.packaging) {%>
-                <span style="color:rgb(249, 104, 8)">
-                Primary packaging: <%= expression.product.packaging%> 
+                    <span style= "font-size: 0.8em">      Primary packaging:</span><span style= "font-size: 0.8em; color:rgb(249, 104, 8)">
+                <%= expression.product.packaging%> 
                 </span>
                 <% } %>
                 </li>
 
                 <li>
                 <% if(expression.product.hosp_packaging === expression.hosp_packaging) {%>
-                <span style="color:rgb(10, 10, 10)">
-                Hospital pack: <%= expression.product.hosp_packaging%> 
+                    <span style= "font-size: 0.8em">      Hospital pack:</span> <span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                <%= expression.product.hosp_packaging%> 
                 </span>
                 <% } %>
                 <% if(expression.product.hosp_packaging != expression.hosp_packaging) {%>
-                <span style="color:rgb(249, 104, 8)">
-                Hospital pack: <%= expression.product.hosp_packaging%> 
+                    <span style= "font-size: 0.8em">      Hospital pack:</span> <span style= "font-size: 0.8em; color:rgb(249, 104, 8)">
+                <%= expression.product.hosp_packaging%> 
                 </span>
                 <% } %>
                 </li>
     
                 <li>
                 <% if(expression.product.shelflife === expression.shelflife) {%>
-                <span style="color:rgb(10, 10, 10)">
-                Shelflife (m): <%= expression.product.shelflife%> 
+                    <span style= "font-size: 0.8em">      Shelflife (m): </span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                <%= expression.product.shelflife%> 
                 </span>
                 <% } %>
                 <% if(expression.product.shelflife != expression.shelflife) {%>
-                <span style="color:rgb(249, 104, 8)">
-                Shelflife (m): <%= expression.product.shelflife%> 
+                    <span style= "font-size: 0.8em">      Shelflife (m): </span><span style= "font-size: 0.8em; color:rgb(249, 104, 8)">
+                <%= expression.product.shelflife%> 
                 </span>
                 <% } %>
                 </li>
+
+<li> <%=expression.gmp%> </li>
+<li> <%=expression.api%> </li>
+<li> <%=expression.stab%> </li>
+<li> <%=expression.ster%> </li>
+<li> <%=expression.be%> </li>
+<li> <%=expression.packSpec%> </li>
+<li> <%=expression.fpSpec%> </li>
+<li> <%=expression.labeImage%> </li>
+
+
             </ul>
         </div>
     </div>
@@ -362,9 +349,9 @@
     <div class="col-sm-4">
         <span style="color:rgb(162, 164, 165)">
         <% if(expression.status === "ONLINE CHECK") {%>
-            <p> <a class="btn btn-xs btn-warning" href="/expressions/<%=expression._id%>/edit">Edit</a></p>
+            <p> <a class="btn btn-sm btn-warning" href="/expressions/<%=expression._id%>/edit">Edit</a></p>
         <form action="/expressions/<%=expression._id%>?_method=DELETE" method="POST">
-        <button class="btn btn-xs btn-danger">Delete</button>
+        <button class="btn btn-sm btn-danger">Delete</button>
         </form>
         <% } %>
     </div>
@@ -378,25 +365,25 @@
 
     <% if(expression.status==="ONLINE CHECK" ) {%>
         <div class="col-12">
-            <h5 style="font-size: 2vw">Questions</h5>
+            <h5 style="font-size: 1em">Questions</h5>
             <form action="/expressions/<%=expression._id%>/checks" method="POST" class="mb-3 validated-form" novalidate>
                 <div class="mb-3">
                     <!-- <label class="form-label" for="rating">Rating (1-10)</label> -->
                     <!-- <input class="form-range" type="range" min="1" max="10" name="check[rating]" id="rating"> -->
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="body">Enter</label>
+                  
                     <textarea class="form-control" name="check[body]" id="body" cols="30" rows="3" required></textarea>
                 
                 </div>
-                <button class="btn btn-xs btn-success ">Submit</button>
+                <button class="btn btn-sm btn-success ">Submit</button>
             </form>
             <% for(let check of expression.checks) { %>
             <div class="card mb-3 ">
                 <div class="card-body">
                     <!-- <h5 class="card-title">Rating: <%= check.rating %></h5> -->
                     <p class="card-text"><%= check.body %> </p>
-                    <p><em><span style="color:rgb(33, 32, 32); font-size: 0.8vw" ">Author: <%= check.author.username %> at <%= check.createdAt.toDateString() %></span></em></p>
+                    <p><em><span style="color:rgb(33, 32, 32); font-size: 0.8em" ">Author: <%= check.author.username %> at <%= check.createdAt.toDateString() %></span></em></p>
                     <form action="/expressions/<%=expression._id%>/checks/<%=check._id%>?_method=DELETE" method="POST">
                         <button class="btn btn-sm btn-danger">Delete</button>
                     </form>
@@ -409,25 +396,25 @@
 
     <% if(expression.status=== "ACCEPT") {%>
     <div class="col-12">
-        <h5 style="font-size: 2vw">Remarks</h5>
+        <h5 style="font-size: 0.8em">Remarks</h5>
         <form action="/expressions/<%=expression._id%>/comments" method="POST" class="mb-3 validated-form" novalidate>
             <!-- <div class="mb-3">
                 <label class="form-label" for="rating">Rating (1-10)</label>
                 <input class="form-range" type="range" min="1" max="10" name="comment[rating]" id="rating">
             </div> -->
             <div class="mb-3">
-                <label class="form-label" for="body">Enter</label>
+              
                 <textarea class="form-control" name="comment[body]" id="body" cols="30" rows="3" required></textarea>
             
             </div>
-            <button class="btn btn-xs btn-success">Submit</button>
+            <button class="btn btn-sm btn-success">Submit</button>
         </form>
         <% for(let comment of expression.comments) { %>
         <div class="card mb-3 ">
             <div class="card-body">
-                <h5 class="card-title">Rating: <%= comment.rating %></h5>
+                <!-- <h5 class="card-title">Rating: <%= comment.rating %></h5> -->
                 <p class="card-text">Comment: <%= comment.body %></p>
-                <p><em><span style="color:rgb(33, 32, 32);  font-size: 0.8vw">Author: <%= comment.author.username %> at <%= comment.createdAt.toDateString() %></span></em></p>
+                <p><em><span style="color:rgb(33, 32, 32);  font-size: 0.8em">Author: <%= comment.author.username %> at <%= comment.createdAt.toDateString() %></span></em></p>
                 <form action="/expressions/<%=expression._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
                     <button class="btn btn-sm btn-danger">Delete</button>
                 </form>
@@ -439,25 +426,25 @@
 
     <% if(expression.status==="REJECT"  ) {%>
     <div class="col-6">
-        <h5 style="font-size: 2vw">Reasons</h5>
+        <h5 style="font-size: 0.8em">Reasons</h5>
         <form action="/expressions/<%=expression._id%>/evaluations" method="POST" class="mb-3 validated-form" novalidate>
             <!-- <div class="mb-3">
                 <label class="form-label" for="rating">Rating (1-10)</label>
                 <input class="form-range" type="range" min="1" max="10" name="evaluation[rating]" id="rating">
             </div> -->
             <div class="mb-3">
-                <label class="form-label" for="body">Enter</label>
+               
                 <textarea class="form-control" name="evaluation[body]" id="body" cols="30" rows="3" required></textarea>
             
             </div>
-            <button class="btn btn-xs btn-success">Submit</button>
+            <button class="btn btn-sm btn-success">Submit</button>
         </form>
         <% for(let evaluation of expression.evaluations) { %>
         <div class="card mb-3 ">
             <div class="card-body">
-                <h5 class="card-title">Rating: <%= evaluation.rating %></h5>
+                <!-- <h5 class="card-title">Rating: <%= evaluation.rating %></h5> -->
                 <p class="card-text">Evaluation: <%= evaluation.body %></p>
-                <p><em><span style="color:rgb(33, 32, 32); font-size: 0.8vw">Author: <%= evaluation.author.username %> at <%= evaluation.createdAt.toDateString() %></span></em></p>
+                <p><em><span style="color:rgb(33, 32, 32); font-size: 0.8em">Author: <%= evaluation.author.username %> at <%= evaluation.createdAt.toDateString() %></span></em></p>
                 <form action="/expressions/<%=expression._id%>/evaluations/<%=evaluation._id%>?_method=DELETE" method="POST">
                     <button class="btn btn-sm btn-danger">Delete</button>
                 </form>
