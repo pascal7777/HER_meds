@@ -40,6 +40,7 @@ module.exports.expressionSchema = Joi.object({
         labelImage: Joi.string().required(),
         leadTime: Joi.string().required(),
         storage: Joi.string().required(),
+        warehouse: Joi.string().required(),
         tel: Joi.string().required(),
         email: Joi.string().required(),
         status: Joi.string().required(),
