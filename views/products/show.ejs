@@ -6,7 +6,7 @@
     </h1>
 
 <div class="row">
-    <div class="col-sm-3" style=" line-height:1.1">
+    <div class="col-sm-6" style=" line-height:1.0">
     <span style="color:rgb(119, 119, 121); font-size: 0.5em"> Created: <%= product.author.username%> 
     <em>On: <%= product.createdAt.toDateString()%></em> 
     <% if( (product.createdAt - Date.now())/604800000 <= -1)      {%>
@@ -14,7 +14,7 @@
     <% } %>    
     </span>
 </div> 
-<div class="col-sm-3" style=" line-height:1.1">
+<div class="col-sm-6" style=" line-height:1.0">
     <% if(product.createdAt.toDateString() != product.updatedAt.toDateString()) {%>
      <span style="color:rgb(119, 119, 121); font-size: 0.5em"> Edited: <%= product.editor.username%>
      <em>On: <%= product.updatedAt.toDateString()%></em> 
