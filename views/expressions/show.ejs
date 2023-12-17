@@ -112,7 +112,7 @@
             <ul>
                 <li>
                 <% if(expression.product.formulation === expression.formulation) {%>
-                    <span style= "font-size: 0.8em">  Formulation: </span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                    <span style= "font-size: 0.8em">  Formulation: </span><span style= "font-size: 0.8em; color:rgba(2, 46, 155, 0.935)">
                 <%=expression.formulation %> 
                 </span>
                 <% } %>
@@ -124,7 +124,7 @@
                 </li>
                 <li>
                 <% if(expression.product.strength  === expression.strength) {%>
-                    <span style= "font-size: 0.8em">   Strength:</span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                    <span style= "font-size: 0.8em">   Strength:</span><span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)">
                  <%=expression.strength %>  <%=expression.unit %> 
                 </span>
                 <% } %>
@@ -136,7 +136,7 @@
                 </li>
                 <li>
                 <% if(expression.product.packSize === expression.packSize) {%>
-                    <span style= "font-size: 0.8em">    Pack size (units):</span> <span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                    <span style= "font-size: 0.8em">    Pack size (units):</span> <span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)">
                <%= expression.packSize%> 
                 </span>
                 <% } %>
@@ -148,7 +148,7 @@
                 </li>
                 <li>
                 <% if(expression.product.packaging === expression.packaging) {%>
-                    <span style= "font-size: 0.8em">   Primary packaging: </span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                    <span style= "font-size: 0.8em">   Primary packaging: </span><span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)">
                  <%= expression.packaging%> 
                 </span>
                 <% } %>
@@ -160,7 +160,7 @@
                 </li>
                 <li>
                 <% if(expression.product.hosp_packaging === expression.hosp_packaging ) {%>
-                    <span style= "font-size: 0.8em">   Hospital pack: </span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                    <span style= "font-size: 0.8em">   Hospital pack: </span><span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)">
                <%= expression.hosp_packaging %> 
                 </span>
                  <% } %>
@@ -172,7 +172,7 @@
                 </li>
                 <li>
                 <% if(expression.product.shelflife === expression.shelflife) {%>
-                    <span style= "font-size: 0.8em">     Shelflife (m): </span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                    <span style= "font-size: 0.8em">     Shelflife (m): </span><span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)">
                 <%= expression.shelflife%> 
                 </span>
                 <% } %>
@@ -213,51 +213,51 @@
                 <h5 style="font-size: 1em">Documentation</h5>
                 <ul>
                     <li><% if( expression.gmp=== "No" || expression.gmp === "To be confirmed")  {%>
-                    <span style= "font-size: 0.8em">GMP Certificate: </span><span style= "font-size: 0.8em; color:rgb(249, 8, 8)"><%=expression.gmp%></span>
+                    <span style= "font-size: 0.8em">GMP Certificate: </span><span style= "font-size: 0.8em; color:rgb(249, 104, 8)"><%=expression.gmp%></span>
                         <% } else{ %>
-                    <span style= "font-size: 0.8em">GMP Certificate: </span><span style= "font-size: 0.8em; color:rgb(8, 12, 249)"><em><%=expression.gmp%></em></span>
+                    <span style= "font-size: 0.8em">GMP Certificate: </span><span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)"><em><%=expression.gmp%></em></span>
                         <% } %>
                     </li>
                     <li><% if( expression.api=== "No" || expression.api === "To be confirmed")  {%>
-                    <span style= "font-size: 0.8em">API source(s): </span><span style= "font-size: 0.8em; color:rgb(249, 8, 8)"><%=expression.api%></span>
+                    <span style= "font-size: 0.8em">API source(s): </span><span style= "font-size: 0.8em; color:rgb(249, 104, 8)"><%=expression.api%></span>
                         <% } else{ %>
-                    <span style= "font-size: 0.8em">API source(s): </span><span style= "font-size: 0.8em; color:rgb(8, 12, 249)"><em><%=expression.api%></em></span>
+                    <span style= "font-size: 0.8em">API source(s): </span><span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)"><em><%=expression.api%></em></span>
                         <% } %>
                     </li>
                     <li><% if( expression.stab=== "No" || expression.stab === "To be confirmed")  {%>
-                    <span style= "font-size: 0.8em">Stability data: </span><span style= "font-size: 0.8em; color:rgb(249, 8, 8)"><%=expression.stab%></span>
+                    <span style= "font-size: 0.8em">Stability data: </span><span style= "font-size: 0.8em; color:rgb(249, 104, 8"><%=expression.stab%></span>
                         <% } else{ %>
-                    <span style= "font-size: 0.8em">Stability data: </span><span style= "font-size: 0.8em; color:rgb(8, 12, 249)"><em><%=expression.stab%></em></span>
+                    <span style= "font-size: 0.8em">Stability data: </span><span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)"><em><%=expression.stab%></em></span>
                         <% } %>
                     </li>
                     <li> <% if( expression.ster=== "No" || expression.ster === "To be confirmed")  {%>
-                    <span style= "font-size: 0.8em">Sterilisation: </span><span style= "font-size: 0.8em; color:rgb(249, 8, 8)"><%=expression.ster%></span>
+                    <span style= "font-size: 0.8em">Sterilisation: </span><span style= "font-size: 0.8em; color:rgb(249, 104, 8)"><%=expression.ster%></span>
                         <% } else{ %>
-                    <span style= "font-size: 0.8em">Sterilisation: </span><span style= "font-size: 0.8em; color:rgb(8, 12, 249)"><em><%=expression.ster%></em></span>
+                    <span style= "font-size: 0.8em">Sterilisation: </span><span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)"><em><%=expression.ster%></em></span>
                         <% } %>
                     </li>
                     <li> <% if( expression.be=== "No" || expression.be === "To be confirmed")  {%>
-                        <span style= "font-size: 0.8em">Interchangeability: </span><span style= "font-size: 0.8em; color:rgb(249, 8, 8)"><%=expression.be%></span>
+                        <span style= "font-size: 0.8em">Interchangeability: </span><span style= "font-size: 0.8em; color:rgb(249, 104, 8)"><%=expression.be%></span>
                             <% } else{ %>
-                        <span style= "font-size: 0.8em">Interchangeability: </span><span style= "font-size: 0.8em; color:rgb(8, 12, 249)"><em><%=expression.be%></em></span>
+                        <span style= "font-size: 0.8em">Interchangeability: </span><span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)"><em><%=expression.be%></em></span>
                             <% } %>
                     </li>
                     <li> <% if( expression.packSpec=== "No" || expression.packSpec === "To be confirmed")  {%>
-                        <span style= "font-size: 0.8em">Packaging specification: </span><span style= "font-size: 0.8em; color:rgb(249, 8, 8)"><%=expression.packSpec%></span>
+                        <span style= "font-size: 0.8em">Packaging specification: </span><span style= "font-size: 0.8em; color:rgb(249, 104, 8)"><%=expression.packSpec%></span>
                             <% } else{ %>
-                        <span style= "font-size: 0.8em">Packaging specification: </span><span style= "font-size: 0.8em; color:rgb(8, 12, 249)"><em><%=expression.packSpec%></em></span>
+                        <span style= "font-size: 0.8em">Packaging specification: </span><span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)"><em><%=expression.packSpec%></em></span>
                             <% } %>
                     </li>
                     <li> <% if( expression.fpSpec=== "No" || expression.fpSpec === "To be confirmed")  {%>
-                        <span style= "font-size: 0.8em">FP specification: </span><span style= "font-size: 0.8em; color:rgb(249, 8, 8)"><%=expression.fpSpec%></span>
+                        <span style= "font-size: 0.8em">FP specification: </span><span style= "font-size: 0.8em; color:rgb(249, 104, 8)"><%=expression.fpSpec%></span>
                             <% } else{ %>
-                        <span style= "font-size: 0.8em">FP specification: </span><span style= "font-size: 0.8em; color:rgb(8, 12, 249)"><em><%=expression.fpSpec%></em></span>
+                        <span style= "font-size: 0.8em">FP specification: </span><span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)"><em><%=expression.fpSpec%></em></span>
                             <% } %>
                     </li>
                     <li> <% if( expression.labelImage=== "No" || expression.labeImage === "To be confirmed")  {%>
-                        <span style= "font-size: 0.8em">Label Image: </span><span style= "font-size: 0.8em; color:rgb(249, 8, 8)"><%=expression.labelImage%></span>
+                        <span style= "font-size: 0.8em">Label Image: </span><span style= "font-size: 0.8em; color:rgb(249, 104, 8)"><%=expression.labelImage%></span>
                             <% } else{ %>
-                        <span style= "font-size: 0.8em">Label Image: </span><span style= "font-size: 0.8em; color:rgb(8, 12, 249)"><em><%=expression.labelImage%></em></span>
+                        <span style= "font-size: 0.8em">Label Image: </span><span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)"><em><%=expression.labelImage%></em></span>
                             <% } %>
                     </li>
                 </ul>   
@@ -302,7 +302,7 @@
             <ul>
                 <li>
                 <% if(expression.product.formulation === expression.formulation) {%>
-                    <span style= "font-size: 0.8em">      Formulation: </span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                    <span style= "font-size: 0.8em">      Formulation: </span><span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)">
                 <%=expression.product.formulation %> 
                 </span>
                 <% } %>
@@ -315,7 +315,7 @@
                 
                 <li>
                 <% if(expression.product.strength  === expression.strength) {%>
-                    <span style= "font-size: 0.8em">      Strength:</span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                    <span style= "font-size: 0.8em">      Strength:</span><span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)">
                  <%=expression.product.strength %>  <%=expression.product.unit %> 
                 </span>
                 <% } %>
@@ -328,7 +328,7 @@
 
                 <li>
                 <% if(expression.product.packSize === expression.packSize) {%>
-                    <span style= "font-size: 0.8em">     Pack size (units): </span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                    <span style= "font-size: 0.8em">     Pack size (units): </span><span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)">
                 <%= expression.product.packSize%> 
                 </span>
                 <% } %>
@@ -341,7 +341,7 @@
 
                 <li>
                 <% if(expression.product.packaging === expression.packaging) {%>
-                    <span style= "font-size: 0.8em">       Primary packaging:</span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                    <span style= "font-size: 0.8em">       Primary packaging:</span><span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)">
                  <%= expression.product.packaging%> 
                 </span>
                 <% } %>
@@ -354,7 +354,7 @@
 
                 <li>
                 <% if(expression.product.hosp_packaging === expression.hosp_packaging) {%>
-                    <span style= "font-size: 0.8em">      Hospital pack:</span> <span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                    <span style= "font-size: 0.8em">      Hospital pack:</span> <span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)">
                 <%= expression.product.hosp_packaging%> 
                 </span>
                 <% } %>
@@ -367,7 +367,7 @@
     
                 <li>
                 <% if(expression.product.shelflife === expression.shelflife) {%>
-                    <span style= "font-size: 0.8em">      Shelflife (m): </span><span style= "font-size: 0.8em; color:rgb(5, 58, 193, 0.935)">
+                    <span style= "font-size: 0.8em">      Shelflife (m): </span><span style= "font-size: 0.8em; color:rgb(2, 46, 155, 0.935)">
                 <%= expression.product.shelflife%> 
                 </span>
                 <% } %>
