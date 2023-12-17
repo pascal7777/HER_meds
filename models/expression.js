@@ -95,6 +95,9 @@ const expressionSchema = new Schema({
     tel: {
         type: String
     },
+    warehouse: {
+        type: String
+    },
     status: {
         type: String, default: 'ONLINE CHECK',
         uppercase: true,
